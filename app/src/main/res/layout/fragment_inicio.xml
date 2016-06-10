@@ -1,0 +1,34 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="mx.gob.jalisco.portalsej.portalsej.fragments.Inicio">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="fill_parent"
+            android:layout_height="220dp"/>
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:padding="10dp"
+            app:centered="true"
+            app:fillColor="@color/colorPrimary"
+            app:pageColor="#ffffff"
+            app:strokeColor="#ffffff"
+            app:strokeWidth="0dp"
+            app:snap="false"
+            android:layout_marginTop="-35dp"
+            android:layout_below="@id/pager"
+            android:layout_gravity="center" />
+
+    </RelativeLayout>
+</FrameLayout>

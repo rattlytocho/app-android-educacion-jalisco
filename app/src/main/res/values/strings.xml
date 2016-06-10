@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Educación Jalisco</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <!--STRING MENUS-->
+    <string name="action_settings">Ajustes</string>
+    <string name="action_search">Buscar</string>
+
+    <!-- STRINGS Fragments -->
+    <string name="alumnos">Alumnos</string>
+    <string name="administrativo">Administrativo</string>
+    <string name="ciudadania">"Ciudadanía</string>
+
+    <!--STRINGS BUTTONS-->
+</resources>

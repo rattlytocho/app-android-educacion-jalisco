@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/noticeDay"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="2dp"
+    app:cardBackgroundColor="@color/colorPrimary">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/titleRecipe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:text="Recipe or Tip of the day"/>
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio nemo dolore quia maiores vero id culpa!"
+            android:layout_below="@+id/titleRecipe"
+            android:layout_alignStart="@+id/titleRecipe" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
