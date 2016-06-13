@@ -84,7 +84,7 @@ public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapte
 
         }else{
             v = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.card_item_convocatoria, viewGroup, false);
+                    .inflate(R.layout.item_card_convocatoria, viewGroup, false);
             return new ViewHolder(v,this);
         }
     }
@@ -93,7 +93,7 @@ public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapte
     public void onBindViewHolder(final ViewHolder viewHolder, int i) {
 
         viewHolder.title.setText(items.get(i).getTitle());
-        viewHolder.field_fecha_de_publicacion.setText(items.get(i).getField_fecha_de_publicacion());
+        viewHolder.field_fecha_de_publicacion.setText("Del: "+items.get(i).getField_fecha_de_publicacion());
 
         final int item = i;
 

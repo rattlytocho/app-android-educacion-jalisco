@@ -10,4 +10,6 @@
 
     <color name="transparent">#00000000</color>
 
+    <color name="gray_700">#616161</color>
+
 </resources>

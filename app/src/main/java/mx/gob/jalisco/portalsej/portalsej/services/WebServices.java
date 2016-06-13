@@ -12,4 +12,6 @@ public class WebServices {
     public static final String AVISOS = "avisos";
     public static final String NOTICIAS = "noticias";
 
+    public static final String SLIDER = "slider";
+
 }

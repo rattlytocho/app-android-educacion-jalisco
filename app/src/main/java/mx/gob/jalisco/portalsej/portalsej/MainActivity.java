@@ -1,35 +1,24 @@
 package mx.gob.jalisco.portalsej.portalsej;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.provider.Settings;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.FrameLayout;
 
-import com.viewpagerindicator.CirclePageIndicator;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import mx.gob.jalisco.portalsej.portalsej.adapters.ImageSlideAdapter;
 import mx.gob.jalisco.portalsej.portalsej.fragments.Administrativo;
 import mx.gob.jalisco.portalsej.portalsej.fragments.Alumnos;
 import mx.gob.jalisco.portalsej.portalsej.fragments.Ciudadania;
@@ -44,12 +33,9 @@ public class MainActivity extends AppCompatActivity
 
     boolean isUserFirstTime;
 
-
-
     private TabLayout tabLayout;
     private ViewPager viewPager;
     Toolbar toolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +47,6 @@ public class MainActivity extends AppCompatActivity
             //getSupportActionBar().setTitle("");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         isUserFirstTime = Boolean.valueOf(Utils.readSharedSetting(MainActivity.this, PREF_USER_FIRST_TIME, "true"));
 
@@ -78,6 +61,7 @@ public class MainActivity extends AppCompatActivity
 
             //startActivity(introIntent);
         }
+
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -101,6 +85,8 @@ public class MainActivity extends AppCompatActivity
         setupTabIcons();
     }
 
+
+
     private void setupTabIcons() {
         View view1 = getLayoutInflater().inflate(R.layout.item_tab, null);
         view1.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_action_home_white);
@@ -111,13 +97,12 @@ public class MainActivity extends AppCompatActivity
         tabLayout.getTabAt(1).setCustomView(view2);
 
         View view3 = getLayoutInflater().inflate(R.layout.item_tab, null);
-        view3.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_techer_white);
+        view3.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_ic_techer_white);
         tabLayout.getTabAt(2).setCustomView(view3);
 
         View view4 = getLayoutInflater().inflate(R.layout.item_tab, null);
-        view4.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_people_white);
+        view4.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_ciudadanos);
         tabLayout.getTabAt(3).setCustomView(view4);
-
     }
 
     private void setupViewPager(ViewPager viewPager) {

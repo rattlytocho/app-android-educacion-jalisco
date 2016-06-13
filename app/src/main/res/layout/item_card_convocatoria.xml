@@ -8,7 +8,7 @@
     app:cardElevation="2dp"
     app:cardMaxElevation="8dp"
     app:cardCornerRadius="2dp"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="0dp"
     android:layout_marginTop="8dp"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp">
@@ -25,13 +25,15 @@
             android:layout_marginTop="@dimen/primary_title_top_padding"
             android:paddingLeft="@dimen/primary_title_left_padding"
             android:paddingRight="@dimen/primary_title_left_padding"
-            android:text="Titulo de la convocatoria"/>
+            android:text="Titulo de la convocatoria"
+            android:layout_toStartOf="@+id/imageView2"
+            android:layout_alignParentEnd="true" />
 
         <LinearLayout
             android:id="@+id/dates"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_below="@id/title"
             android:layout_marginLeft="@dimen/primary_title_left_padding"
             android:layout_marginBottom="@dimen/primary_title_bottom_padding"
@@ -40,19 +42,35 @@
             <TextView
                 android:id="@+id/field_fecha_de_publicacion"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorPrimary"
                 style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+                android:textSize="14dp"
+                android:gravity="center_vertical"
                 android:text="Del: 2016-05-27"/>
 
             <TextView
                 android:id="@+id/field_fecha_de_vencimiento"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorPrimary"
                 style="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
-                android:text="al: 2016-05-30" />
+                android:text="al: 2016-05-30"
+                android:textSize="14dp"
+                android:gravity="center_vertical"
+                android:layout_below="@+id/title"
+                android:layout_toEndOf="@+id/dates"
+                android:layout_marginLeft="3dp"/>
 
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_ic_picture_as_pdf_black_24dp_2x"
+                android:id="@+id/imageView2"
+                android:layout_below="@+id/title"
+                android:layout_alignParentEnd="true" />
         </LinearLayout>
-
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/launcher"

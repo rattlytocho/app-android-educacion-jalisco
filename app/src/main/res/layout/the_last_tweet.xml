@@ -17,23 +17,26 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/titleRecipe"
+            android:id="@+id/textTweet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:text="Recipe or Tip of the day"/>
+            android:layout_marginTop="@dimen/primary_title_top_padding"
+            android:text="Recipe or Tip of the day"
+            android:textColor="@color/white"/>
 
         <TextView
-            android:id="@+id/content"
+            android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:textColor="@color/white"
             android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio nemo dolore quia maiores vero id culpa!"
-            android:layout_below="@+id/titleRecipe"
-            android:layout_alignStart="@+id/titleRecipe" />
+            android:layout_below="@+id/textTweet"
+            android:layout_alignStart="@+id/textTweet" />
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

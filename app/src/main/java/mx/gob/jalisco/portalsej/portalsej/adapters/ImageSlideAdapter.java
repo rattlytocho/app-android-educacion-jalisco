@@ -3,28 +3,32 @@ package mx.gob.jalisco.portalsej.portalsej.adapters;
 import android.content.Context;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
+import java.util.List;
+
 import mx.gob.jalisco.portalsej.portalsej.R;
+import mx.gob.jalisco.portalsej.portalsej.objects.Slide;
 
 /**
  * Created by root on 6/06/16.
  */
 public class ImageSlideAdapter extends PagerAdapter {
 
-    //private ArrayList<Integer> IMAGES;
-    private ArrayList<String> URLIMAGES;
+    public static List<Slide> items = new ArrayList<>();
     private LayoutInflater inflater;
     private Context context;
 
-    public ImageSlideAdapter(Context context,ArrayList<String> URLIMAGES) {
+    public ImageSlideAdapter(Context context, List<Slide> items) {
         this.context = context;
-        this.URLIMAGES=URLIMAGES;
+        this.items=items;
         inflater = LayoutInflater.from(context);
     }
 
@@ -35,35 +39,30 @@ public class ImageSlideAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return URLIMAGES.size();
+        return items.size();
     }
 
     @Override
     public Object instantiateItem(ViewGroup view, final int position) {
-        View imageLayout = inflater.inflate(R.layout.slide_item_layout, view, false);
+        View imageLayout = inflater.inflate(R.layout.item_slide_layout, view, false);
 
         assert imageLayout != null;
-        final ImageView imageView = (ImageView) imageLayout
-                .findViewById(R.id.image);
+        final ImageView imageView = (ImageView) imageLayout.findViewById(R.id.image);
 
+        final TextView textView = (TextView) imageLayout.findViewById(R.id.textSlide);
 
         Glide.with(context)
-                .load(URLIMAGES.get(position))
+                .load(items.get(position).getImage())
                 .into(imageView);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        textView.setText(items.get(position).getText());
 
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(context,MainActivity.class);
-                Bundle bundle =new Bundle();
-                bundle.putString("URLIMAGE", URLIMAGES.get(position) );
-                intent.putExtras(bundle);
-                context.startActivity(intent);*/
+
             }
         });
-        //imageView.setImageResource(URLIMAGES.get(position));
-
         view.addView(imageLayout, 0);
 
         return imageLayout;

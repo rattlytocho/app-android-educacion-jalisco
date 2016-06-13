@@ -14,7 +14,7 @@ import mx.gob.jalisco.portalsej.portalsej.R;
 
 public class Utils {
 
-    private static final String PREFERENCES_FILE = "materialsample_settings";
+    private static final String PREFERENCES_FILE = "secretaria_educacion_preferences";
 
 
     public static int getToolbarHeight(Context context) {
