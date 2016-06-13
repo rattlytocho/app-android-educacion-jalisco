@@ -179,7 +179,7 @@ public class Inicio extends Fragment {
                 public void run() {
                     handler.post(Update);
                 }
-            }, 1000);
+            }, 1000,1000);
 
             // Pager listener over indicator
             indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

@@ -91,15 +91,20 @@
                         <TextView
                             android:layout_width="30dp"
                             android:layout_height="60dp"
-                            android:text="Calendario Escolar 2016 - 2017"
+                            android:text="@string/calendario"
                             style="@style/Base.TextAppearance.AppCompat.Title"
                             android:layout_alignParentEnd="true"
                             android:gravity="center_vertical"
                             android:textColor="@color/white"
                             android:layout_toEndOf="@+id/imageView3"
-                            android:layout_alignParentBottom="true"
-                            android:layout_alignParentTop="true"/>
+                            android:layout_alignParentTop="true"
+                            android:layout_alignBottom="@+id/imageView3" />
+
                     </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/ripple_flat_accent"/>
                 </android.support.v7.widget.CardView>
             </LinearLayout>
         </RelativeLayout>
