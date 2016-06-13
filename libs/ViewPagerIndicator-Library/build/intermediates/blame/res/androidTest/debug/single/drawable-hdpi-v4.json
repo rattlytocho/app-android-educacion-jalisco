@@ -1,9 +1,5 @@
 [
     {
-        "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/E:\\Respaldo\\Documentos\\AndroidStudioProjects\\PortalSEJ\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\vpi__tab_unselected_holo.9.png",
-        "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/E:\\Respaldo\\Documentos\\AndroidStudioProjects\\PortalSEJ\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\vpi__tab_unselected_holo.9.png"
-    },
-    {
         "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_unselected_holo.9.png",
         "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_unselected_holo.9.png"
     },
@@ -12,36 +8,16 @@
         "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_unselected_pressed_holo.9.png"
     },
     {
-        "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/E:\\Respaldo\\Documentos\\AndroidStudioProjects\\PortalSEJ\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\vpi__tab_unselected_focused_holo.9.png",
-        "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/E:\\Respaldo\\Documentos\\AndroidStudioProjects\\PortalSEJ\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\vpi__tab_unselected_focused_holo.9.png"
-    },
-    {
         "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_unselected_focused_holo.9.png",
         "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_unselected_focused_holo.9.png"
-    },
-    {
-        "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/E:\\Respaldo\\Documentos\\AndroidStudioProjects\\PortalSEJ\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\vpi__tab_unselected_pressed_holo.9.png",
-        "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/E:\\Respaldo\\Documentos\\AndroidStudioProjects\\PortalSEJ\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\vpi__tab_unselected_pressed_holo.9.png"
-    },
-    {
-        "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/E:\\Respaldo\\Documentos\\AndroidStudioProjects\\PortalSEJ\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\vpi__tab_selected_holo.9.png",
-        "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/E:\\Respaldo\\Documentos\\AndroidStudioProjects\\PortalSEJ\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\vpi__tab_selected_holo.9.png"
-    },
-    {
-        "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_selected_focused_holo.9.png",
-        "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_selected_focused_holo.9.png"
     },
     {
         "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_selected_pressed_holo.9.png",
         "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_selected_pressed_holo.9.png"
     },
     {
-        "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/E:\\Respaldo\\Documentos\\AndroidStudioProjects\\PortalSEJ\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\vpi__tab_selected_pressed_holo.9.png",
-        "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/E:\\Respaldo\\Documentos\\AndroidStudioProjects\\PortalSEJ\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\vpi__tab_selected_pressed_holo.9.png"
-    },
-    {
-        "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/E:\\Respaldo\\Documentos\\AndroidStudioProjects\\PortalSEJ\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\vpi__tab_selected_focused_holo.9.png",
-        "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/E:\\Respaldo\\Documentos\\AndroidStudioProjects\\PortalSEJ\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\vpi__tab_selected_focused_holo.9.png"
+        "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_selected_focused_holo.9.png",
+        "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/drawable-hdpi-v4/vpi__tab_selected_focused_holo.9.png"
     },
     {
         "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/drawable-hdpi-v4/vpi__tab_selected_holo.9.png",
