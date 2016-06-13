@@ -26,7 +26,6 @@
             android:paddingLeft="@dimen/primary_title_left_padding"
             android:paddingRight="@dimen/primary_title_left_padding"
             android:text="Titulo de la convocatoria"
-            android:layout_toStartOf="@+id/imageView2"
             android:layout_alignParentEnd="true" />
 
         <LinearLayout
