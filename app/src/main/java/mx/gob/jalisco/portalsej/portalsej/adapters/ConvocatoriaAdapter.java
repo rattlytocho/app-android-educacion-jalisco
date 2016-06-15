@@ -22,6 +22,8 @@ import mx.gob.jalisco.portalsej.portalsej.utils.Utils;
 /**
  * Created by root on 8/06/16.
  */
+
+
 public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapter.ViewHolder>{
 
     List<Convocatoria> items = new ArrayList<>();

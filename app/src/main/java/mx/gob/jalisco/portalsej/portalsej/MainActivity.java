@@ -1,5 +1,6 @@
 package mx.gob.jalisco.portalsej.portalsej;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -12,6 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -50,8 +52,8 @@ public class MainActivity extends AppCompatActivity
 
         isUserFirstTime = Boolean.valueOf(Utils.readSharedSetting(MainActivity.this, PREF_USER_FIRST_TIME, "true"));
 
-        //Intent introIntent = new Intent(MainActivity.this, Intro.class);
-        //introIntent.putExtra(PREF_USER_FIRST_TIME, isUserFirstTime);
+        Intent introIntent = new Intent(MainActivity.this, Intro.class);
+        introIntent.putExtra(PREF_USER_FIRST_TIME, isUserFirstTime);
 
         if (isUserFirstTime) {
             Utils.saveSharedSetting(MainActivity.this, MainActivity.PREF_USER_VIEW_RECIPE, "card");
@@ -59,9 +61,9 @@ public class MainActivity extends AppCompatActivity
             //Utils.saveSharedSetting(MainActivity.this, Settings.PREF_USER_NOTIFICATIONS, "true");
             //Utils.saveSharedSetting(MainActivity.this, Settings.PREF_USER_DIARY_NOTIFICATIONS, "false");
 
-            //startActivity(introIntent);
         }
 
+        startActivity(introIntent);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
@@ -85,19 +87,17 @@ public class MainActivity extends AppCompatActivity
         setupTabIcons();
     }
 
-
-
     private void setupTabIcons() {
         View view1 = getLayoutInflater().inflate(R.layout.item_tab, null);
-        view1.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_action_home_white);
+        view1.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_action_home_primary);
         tabLayout.getTabAt(0).setCustomView(view1);
 
         View view2 = getLayoutInflater().inflate(R.layout.item_tab, null);
-        view2.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_social_school_white);
+        view2.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_social_school_primary);
         tabLayout.getTabAt(1).setCustomView(view2);
 
         View view3 = getLayoutInflater().inflate(R.layout.item_tab, null);
-        view3.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_ic_techer_white);
+        view3.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_maestros);
         tabLayout.getTabAt(2).setCustomView(view3);
 
         View view4 = getLayoutInflater().inflate(R.layout.item_tab, null);
@@ -169,11 +169,13 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        Intent intent = null;
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -183,20 +185,27 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Intent intent = null;
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_convocatorias) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_results) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_news) {
 
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.nav_info) {
+            intent = new Intent(MainActivity.this,Intro.class);
         }
+
+
+        if(intent  != null){
+            startActivity(intent);
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         assert drawer != null;

@@ -1,5 +1,6 @@
 package mx.gob.jalisco.portalsej.portalsej.fragments;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,12 +13,14 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 import com.viewpagerindicator.CirclePageIndicator;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -27,7 +30,6 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,7 @@ import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import mx.gob.jalisco.portalsej.portalsej.Calendar;
 import mx.gob.jalisco.portalsej.portalsej.R;
 import mx.gob.jalisco.portalsej.portalsej.adapters.ImageSlideAdapter;
 import mx.gob.jalisco.portalsej.portalsej.adapters.TweetAdapter;
@@ -45,8 +48,7 @@ import mx.gob.jalisco.portalsej.portalsej.services.WebServices;
 import mx.gob.jalisco.portalsej.portalsej.utils.NetworkUtils;
 
 
-@SuppressWarnings("ALL")
-public class Inicio extends Fragment {
+public class Inicio extends Fragment implements View.OnClickListener{
 
     private static ViewPager mPager;
     private static int currentPage = 0;
@@ -60,11 +62,7 @@ public class Inicio extends Fragment {
 
     List<Tweet> items = new ArrayList<>();
 
-    // ELEMENTOS DEL ÚLTIMO TWEET
-    TextView textTweet;
-    TextView date;
-    SpannableString TweetText;
-    String TweetDate;
+    RelativeLayout launcher_calendar;
 
     public Inicio() {
     }
@@ -88,16 +86,26 @@ public class Inicio extends Fragment {
         recycler.setLayoutManager(lManager);
         recycler.setNestedScrollingEnabled(false);
 
-        //textTweet = (TextView) view.findViewById(R.id.textTweet);
-        //date  = (TextView) view.findViewById(R.id.date);
-
         utils = new NetworkUtils(getActivity());
 
         if(utils.isConnectingToInternet()){
             new DataFetcherTask().execute();
             new DataSlider().execute();
         }
+
+        launcher_calendar = (RelativeLayout) view.findViewById(R.id.launcher_calendar);
+        launcher_calendar.setOnClickListener(this);
+
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if(id == R.id.launcher_calendar){
+            Intent intent = new Intent(getContext(), Calendar.class);
+            startActivity(intent);
+        }
     }
 
     class DataFetcherTask extends AsyncTask<Void,Void,Void> {
@@ -119,7 +127,6 @@ public class Inicio extends Fragment {
                 HttpResponse httpResponse = httpClient.execute(httpGet);
                 HttpEntity httpEntity = httpResponse.getEntity();
                 serverData = EntityUtils.toString(httpEntity);
-                //Log.d("response", serverData);
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -137,7 +144,6 @@ public class Inicio extends Fragment {
 
                     itemsSlide.add(new Slide(SlideImage, SlideTitle, SlideUrl));
                 }
-                //adapter = new TweetAdapter(items,getActivity());
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -151,9 +157,9 @@ public class Inicio extends Fragment {
 
             mPager = (ViewPager) V.findViewById(R.id.pager);
 
-
             mPager.setAdapter(new ImageSlideAdapter(getActivity(),itemsSlide));
 
+            NUM_PAGES = itemsSlide.size();
             CirclePageIndicator indicator = (CirclePageIndicator)
                     V.findViewById(R.id.indicator);
 
@@ -179,7 +185,7 @@ public class Inicio extends Fragment {
                 public void run() {
                     handler.post(Update);
                 }
-            }, 1000,1000);
+            }, 5000,5000);
 
             // Pager listener over indicator
             indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -216,7 +222,6 @@ public class Inicio extends Fragment {
                 HttpResponse httpResponse = httpClient.execute(httpGet);
                 HttpEntity httpEntity = httpResponse.getEntity();
                 serverData = EntityUtils.toString(httpEntity);
-                //Log.d("response", serverData);
             } catch (ClientProtocolException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -245,7 +250,6 @@ public class Inicio extends Fragment {
 
                     items.add(new Tweet(image, tweetText, tweetDate));
                 }
-                //adapter = new TweetAdapter(items,getActivity());
 
             } catch (JSONException e) {
                 e.printStackTrace();

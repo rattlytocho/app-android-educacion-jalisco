@@ -20,12 +20,16 @@
             <RelativeLayout
                 android:id="@+id/slide_container"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp">
 
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/pager"
-                    android:layout_width="fill_parent"
-                    android:layout_height="220dp"/>
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/pager"
+                        android:layout_width="fill_parent"
+                        android:layout_height="220dp"/>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -69,7 +73,7 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    card_view:cardElevation="2dp"
+                    card_view:cardElevation="4dp"
                     card_view:cardCornerRadius="2dp"
                     card_view:cardBackgroundColor="@color/colorPrimary"
                     android:layout_marginLeft="8dp"
@@ -102,8 +106,10 @@
 
                     </RelativeLayout>
                     <RelativeLayout
+                        android:id="@+id/launcher_calendar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:clickable="true"
                         android:background="@drawable/ripple_flat_accent"/>
                 </android.support.v7.widget.CardView>
             </LinearLayout>

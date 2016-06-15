@@ -18,6 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:theme="@style/ActionBarStyle"
             app:layout_scrollFlags="scroll|enterAlways">
 
         </android.support.v7.widget.Toolbar>
@@ -26,11 +27,11 @@
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/white"
             app:tabMode="fixed"
             app:tabGravity="fill"
-            app:tabBackground="?attr/selectableItemBackground"
-            app:tabIndicatorColor="@color/white"
+            app:tabBackground="@drawable/ripple_flat_primary"
+            app:tabIndicatorColor="@color/colorPrimary"
             app:tabIndicatorHeight="5dp"/>
 
     </android.support.design.widget.AppBarLayout>

@@ -4,16 +4,39 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-
     <!--STRING MENUS-->
+    <string name="section_format">Hello World from section: %1$d</string>
     <string name="action_settings">Ajustes</string>
     <string name="action_search">Buscar</string>
+    <string name="action_refresh">Refrescar</string>
+    <!--DRAWER NAV-->
+    <string name="share_app">Comparte esta App</string>
+    <string name="about">Acerca</string>
+    <string name="communicate">"Cómunicate"</string>
+    <string name="conv">Convocatorias</string>
+    <string name="results">Resultados</string>
+    <string name="news">Noticias</string>
 
     <!-- STRINGS Fragments -->
     <string name="alumnos">Alumnos</string>
     <string name="administrativo">Administrativo</string>
     <string name="ciudadania">"Ciudadanía</string>
     <string name="calendario">Calendario Escolar 2016 - 2017</string>
+    <string name="title_activity_calendar">Calendario Escolar</string>
 
     <!--STRINGS BUTTONS-->
+
+
+    <!--STRINGS DESCRIPTION SIMBOLS-->
+    <string name="inicio_cursos">Inicio de cursos</string>
+    <string name="fin_cursos">Fin de cursos</string>
+    <string name="suspencion_labores_docentes">"Suspención de labores Docentes"</string>
+    <string name="r_clases">Regreso a clases</string>
+    <string name="c_escolar">Consejo Escolar</string>
+    <string name="e_planea_primaria_6">"Evaluación PLANEA PRIMARIA a estudiantes de 6° grado. No se supenden clases"</string>
+    <string name="e_planea_secundaria_3">"Evaluación PLANEA SECUNDARIA a estudiantes de 3° grado. No se supenden clases"</string>
+    <string name="e_planea_diagnostica">"Aplicación PLANEA DIAGNÓSTICA a estudiantes de 4° grado de primaria por sus maestros. No se supenden clases"</string>
+    <string name="vacaiones">Vacaiones</string>
+    <string name="s_preinscripcion">"Solicitudes de preinscripción a preescolar, primer grado de primaria y primer grado de scundaria para el ciclo escolar 2017–2018"</string>
+
 </resources>

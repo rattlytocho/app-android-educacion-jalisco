@@ -12,4 +12,11 @@
 
     <color name="gray_700">#616161</color>
 
+    <color name="black_overlay">#66000000</color>
+    <color name="black_overlay_50">#a6000000</color>
+
+    <color name="colorBackgroundChip">#DADADA</color>
+    <color name="colorTextChip">#565656</color>
+    <color name="colorCloseBackgroundChip">#6c6c6c</color>
+
 </resources>
