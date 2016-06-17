@@ -164,7 +164,7 @@ public class Administrativo extends Fragment {
                     String field_perfil = jsonObjectC.getString("field_perfil");
                     String body = jsonObjectC.getString("body");
                     String field_archivo = jsonObjectC.getString("field_archivo");
-                    String view_node = jsonObjectC.getString("view_node");
+                    String view_node = jsonObjectC.getString("path");
 
                     /*
                     REPLACE SCAPE CHARACTERS TO SLASH

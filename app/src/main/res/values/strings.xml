@@ -21,11 +21,13 @@
     <string name="alumnos">Alumnos</string>
     <string name="administrativo">Administrativo</string>
     <string name="ciudadania">"Ciudadanía</string>
-    <string name="calendario">Calendario Escolar 2016 - 2017</string>
+    <string name="calendario">Calendario Escolar 2016 – 2017</string>
+    <string name="cafeteria">"Menú Cafetería"</string>
     <string name="title_activity_calendar">Calendario Escolar</string>
 
     <!--STRINGS BUTTONS-->
-
+    <string name="view_on_website">Ver en sitio Veb</string>
+    <string name="download_file">Descargar archivo(s)</string>
 
     <!--STRINGS DESCRIPTION SIMBOLS-->
     <string name="inicio_cursos">Inicio de cursos</string>
@@ -38,5 +40,11 @@
     <string name="e_planea_diagnostica">"Aplicación PLANEA DIAGNÓSTICA a estudiantes de 4° grado de primaria por sus maestros. No se supenden clases"</string>
     <string name="vacaiones">Vacaiones</string>
     <string name="s_preinscripcion">"Solicitudes de preinscripción a preescolar, primer grado de primaria y primer grado de scundaria para el ciclo escolar 2017–2018"</string>
+    <string name="title_activity_detail_convocatoria">DetailConvocatoria</string>
+
+    <!--STRINGS BOTTOMSHEET-->
+    <string name="numbers_telsep">TELSEP</string>
+    <string name="numbers_calendario">Dudas Calendario</string>
+
 
 </resources>

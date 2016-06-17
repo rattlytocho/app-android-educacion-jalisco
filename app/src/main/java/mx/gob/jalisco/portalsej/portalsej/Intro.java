@@ -200,7 +200,7 @@ public class Intro extends AppCompatActivity {
 
             switch(getArguments().getInt(ARG_SECTION_NUMBER)){
                 case 1 :
-                    label = "Gracias por descargar la aplicación de la Secretaría de Edcuación Jalisco, ahora estaras informado de lo que sucede en el ambito educativo.";
+                    label = "Gracias por descargar la aplicación de la Secretaría de Educación Jalisco, ahora estaras informado de lo que sucede en el ambito educativo.";
                     title = "Educación Jalisco";
                     break;
                 case 2:

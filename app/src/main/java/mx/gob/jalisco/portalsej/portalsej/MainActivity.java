@@ -13,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,14 +55,12 @@ public class MainActivity extends AppCompatActivity
         introIntent.putExtra(PREF_USER_FIRST_TIME, isUserFirstTime);
 
         if (isUserFirstTime) {
-            Utils.saveSharedSetting(MainActivity.this, MainActivity.PREF_USER_VIEW_RECIPE, "card");
+            //Utils.saveSharedSetting(MainActivity.this, MainActivity.PREF_USER_VIEW_RECIPE, "card");
             //Utils.saveSharedSetting(MainActivity.this, NotifyService.PREF_USER_LASTRECIPE, "0");
             //Utils.saveSharedSetting(MainActivity.this, Settings.PREF_USER_NOTIFICATIONS, "true");
             //Utils.saveSharedSetting(MainActivity.this, Settings.PREF_USER_DIARY_NOTIFICATIONS, "false");
-
+            startActivity(introIntent);
         }
-
-        startActivity(introIntent);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);

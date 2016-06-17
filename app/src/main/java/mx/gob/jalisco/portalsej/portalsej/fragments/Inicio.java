@@ -179,13 +179,13 @@ public class Inicio extends Fragment implements View.OnClickListener{
                     mPager.setCurrentItem(currentPage++, true);
                 }
             };
-            Timer swipeTimer = new Timer();
+            /*Timer swipeTimer = new Timer();
             swipeTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
                     handler.post(Update);
                 }
-            }, 5000,5000);
+            }, 5000,5000);*/
 
             // Pager listener over indicator
             indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

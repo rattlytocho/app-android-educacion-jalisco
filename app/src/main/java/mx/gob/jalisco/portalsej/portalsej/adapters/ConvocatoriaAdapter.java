@@ -1,7 +1,10 @@
 package mx.gob.jalisco.portalsej.portalsej.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import mx.gob.jalisco.portalsej.portalsej.DetailConvocatoria;
 import mx.gob.jalisco.portalsej.portalsej.MainActivity;
 import mx.gob.jalisco.portalsej.portalsej.R;
 import mx.gob.jalisco.portalsej.portalsej.objects.Convocatoria;
@@ -23,8 +27,7 @@ import mx.gob.jalisco.portalsej.portalsej.utils.Utils;
  * Created by root on 8/06/16.
  */
 
-
-public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapter.ViewHolder>{
+public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapter.ViewHolder> {
 
     List<Convocatoria> items = new ArrayList<>();
 
@@ -66,8 +69,6 @@ public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapte
         }
     }
 
-
-
     @Override
     public int getItemCount() {
         return items.size();
@@ -102,7 +103,7 @@ public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapte
         viewHolder.launcher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(context, DetailConvocatoria.class);
+                Intent intent = new Intent(context, DetailConvocatoria.class);
                 Bundle bundle =new Bundle();
 
                 bundle.putString("TITLE", items.get(item).getTitle());
@@ -114,10 +115,10 @@ public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapte
                 bundle.putString("FIELD_ARCHIVO", items.get(item).getField_archivo());
                 bundle.putString("VIEW_NODE", items.get(item).getView_node());
 
-                //ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, viewHolder.img, viewHolder.img.getTransitionName());
+//                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, viewHolder.title, viewHolder.title.getTransitionName());
 
-                //intent.putExtras(bundle);
-                //context.startActivity(intent, options.toBundle());
+                intent.putExtras(bundle);
+                context.startActivity(intent/*, options.toBundle()*/);
                 //((Activity)  context).overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
 

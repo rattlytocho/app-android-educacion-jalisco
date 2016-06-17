@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="8dp">
+
+    <TextView
+        android:id="@+id/titleBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Selecciona un número para solicitar información"
+        android:gravity="center_vertical"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/titleBottom">
+
+        <LinearLayout
+            android:id="@+id/dudas_calendario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_action_communication_call_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Base.TextAppearance.AppCompat.Title"
+                android:textSize="@dimen/activity_vertical_margin"
+                android:gravity="center_vertical"
+                android:text="@string/numbers_calendario"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/telsep"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:clickable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_action_communication_call_primary"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Base.TextAppearance.AppCompat.Title"
+                android:textSize="@dimen/activity_vertical_margin"
+                android:gravity="center_vertical"
+                android:text="@string/numbers_telsep"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
