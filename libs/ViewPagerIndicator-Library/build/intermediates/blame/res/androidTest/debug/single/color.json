@@ -1,10 +1,10 @@
 [
     {
-        "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/color/vpi__dark_theme.xml",
-        "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/color/vpi__dark_theme.xml"
+        "merged": "/media/martin/DATOS/Android Development/AndroidStudioProjects/app-android-educacion-jalisco/libs/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/color/vpi__dark_theme.xml",
+        "source": "/media/martin/DATOS/Android Development/AndroidStudioProjects/app-android-educacion-jalisco/libs/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/color/vpi__dark_theme.xml"
     },
     {
-        "merged": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/color/vpi__light_theme.xml",
-        "source": "/home/manuel/AndroidStudioProyects/Educación Jalisco/libs/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/color/vpi__light_theme.xml"
+        "merged": "/media/martin/DATOS/Android Development/AndroidStudioProjects/app-android-educacion-jalisco/libs/ViewPagerIndicator-Library/build/intermediates/res/merged/androidTest/debug/color/vpi__light_theme.xml",
+        "source": "/media/martin/DATOS/Android Development/AndroidStudioProjects/app-android-educacion-jalisco/libs/ViewPagerIndicator-Library/build/intermediates/bundles/debug/res/color/vpi__light_theme.xml"
     }
 ]

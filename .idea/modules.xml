@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Educación Jalisco.iml" filepath="$PROJECT_DIR$/Educación Jalisco.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PortalSEJ.iml" filepath="$PROJECT_DIR$/PortalSEJ.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/ViewPagerIndicator-Library/ViewPagerIndicator-Library.iml" filepath="$PROJECT_DIR$/libs/ViewPagerIndicator-Library/ViewPagerIndicator-Library.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app-android-educacion-jalisco.iml" filepath="$PROJECT_DIR$/app-android-educacion-jalisco.iml" />
       <module fileurl="file://$PROJECT_DIR$/libs/libs.iml" filepath="$PROJECT_DIR$/libs/libs.iml" />
     </modules>
   </component>
