@@ -103,6 +103,7 @@
                     android:layout_height="wrap_content"
                     card_view:cardElevation="4dp"
                     card_view:cardCornerRadius="2dp"
+                    android:visibility="gone"
                     card_view:cardBackgroundColor="@color/colorAccent"
                     android:layout_marginLeft="@dimen/margin_text_calendar"
                     android:layout_marginRight="@dimen/margin_text_calendar"

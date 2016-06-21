@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -115,21 +114,14 @@ public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapte
                 bundle.putString("FIELD_ARCHIVO", items.get(item).getField_archivo());
                 bundle.putString("VIEW_NODE", items.get(item).getView_node());
 
-//                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, viewHolder.title, viewHolder.title.getTransitionName());
+                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, viewHolder.title, viewHolder.title.getTransitionName());
 
                 intent.putExtras(bundle);
-                context.startActivity(intent/*, options.toBundle()*/);
+                context.startActivity(intent, options.toBundle());
                 //((Activity)  context).overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
 
             }
         });
-        setFadeAnimation(viewHolder.itemView);
-
-    }
-    private void setFadeAnimation(View view) {
-        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
-        anim.setDuration(1);
-        view.startAnimation(anim);
     }
 }

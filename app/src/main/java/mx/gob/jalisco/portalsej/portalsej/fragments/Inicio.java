@@ -13,14 +13,12 @@ import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.viewpagerindicator.CirclePageIndicator;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -30,14 +28,14 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import mx.gob.jalisco.portalsej.portalsej.Cafeteria;
 import mx.gob.jalisco.portalsej.portalsej.Calendar;
 import mx.gob.jalisco.portalsej.portalsej.R;
 import mx.gob.jalisco.portalsej.portalsej.adapters.ImageSlideAdapter;
@@ -62,7 +60,7 @@ public class Inicio extends Fragment implements View.OnClickListener{
 
     List<Tweet> items = new ArrayList<>();
 
-    RelativeLayout launcher_calendar;
+    RelativeLayout launcher_calendar,launcher_cafetaría;
 
     public Inicio() {
     }
@@ -95,7 +93,8 @@ public class Inicio extends Fragment implements View.OnClickListener{
 
         launcher_calendar = (RelativeLayout) view.findViewById(R.id.launcher_calendar);
         launcher_calendar.setOnClickListener(this);
-
+        launcher_cafetaría = (RelativeLayout) view.findViewById(R.id.launcher_cafetaría);
+        launcher_cafetaría.setOnClickListener(this);
         return view;
     }
 
@@ -104,6 +103,9 @@ public class Inicio extends Fragment implements View.OnClickListener{
         int id = v.getId();
         if(id == R.id.launcher_calendar){
             Intent intent = new Intent(getContext(), Calendar.class);
+            startActivity(intent);
+        }else if(id == R.id.launcher_cafetaría){
+            Intent intent = new Intent(getContext(), Cafeteria.class);
             startActivity(intent);
         }
     }

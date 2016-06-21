@@ -31,4 +31,11 @@
 
     <dimen name="margin_text_calendar">8dp</dimen>
 
+    <dimen name="indicators_dots_height">30dp</dimen>
+    <dimen name="indicator_dots_margin_bottom">20sp</dimen>
+    <dimen name="img_width_height">120dp</dimen>
+    <dimen name="slide_title">20dp</dimen>
+    <dimen name="slide_desc">14dp</dimen>
+    <dimen name="desc_padding">40dp</dimen>
+
 </resources>

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
+    <!--COLORES PRINCIPALES-->
     <color name="colorPrimary">#8f1336</color>
     <color name="colorPrimaryDark">#6b0e28</color>
     <color name="colorAccent">#383838</color>
@@ -19,4 +21,14 @@
     <color name="colorTextChip">#565656</color>
     <color name="colorCloseBackgroundChip">#6c6c6c</color>
 
+
+    <!--COLORES DE LA PRESENTACIÓN DE INICIO-->
+    <color name="screen_slider_1">#ffffff</color>
+    <color name="screen_slider_2">#4E3575</color>
+    <color name="screen_slider_3">#3395ff</color>
+    <color name="screen_slider_4">#c873f4</color>
+
+    <color name="dot_dark_screen">#78000000</color>
+
+    <color name="dot_light_screen">#3e000000</color>
 </resources>
