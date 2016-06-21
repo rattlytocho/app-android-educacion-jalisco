@@ -138,7 +138,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="@string/inicio_cursos"
                     android:layout_marginLeft="@dimen/margin_text_calendar"/>
@@ -157,7 +157,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="@string/fin_cursos"
                     android:layout_marginLeft="@dimen/margin_text_calendar"/>
@@ -176,7 +176,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="@string/suspencion_labores_docentes"
                     android:layout_marginLeft="@dimen/margin_text_calendar"/>
@@ -195,7 +195,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="@string/r_clases"
                     android:layout_marginLeft="@dimen/margin_text_calendar"/>
@@ -214,7 +214,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="@string/c_escolar"
                     android:layout_marginLeft="@dimen/margin_text_calendar"/>
@@ -234,7 +234,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="@string/e_planea_primaria_6"
                     android:layout_marginLeft="@dimen/margin_text_calendar"/>
@@ -254,7 +254,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="@string/e_planea_secundaria_3"
                     android:layout_marginLeft="@dimen/margin_text_calendar"/>
@@ -274,7 +274,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="@string/e_planea_diagnostica"
                     android:layout_marginLeft="@dimen/margin_text_calendar"/>
@@ -294,7 +294,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="@string/vacaiones"
                     android:layout_marginLeft="@dimen/margin_text_calendar"/>
@@ -314,7 +314,7 @@
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center_vertical"
                     android:text="@string/s_preinscripcion"
                     android:layout_marginLeft="@dimen/margin_text_calendar"/>

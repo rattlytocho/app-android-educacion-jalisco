@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/primary_title_left_padding"
                 android:textColor="@color/white"
+                android:transitionName="title"
                 style="@style/Base.TextAppearance.AppCompat.Title"
                 android:text="Titulo de la convocatoria"
                 android:layout_weight="0.31" />

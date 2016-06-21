@@ -2,7 +2,6 @@ package mx.gob.jalisco.portalsej.portalsej.fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -50,7 +49,6 @@ public class Administrativo extends Fragment {
     RecyclerView.LayoutManager lManager;
     NetworkUtils utils;
     SwipeRefreshLayout refresh;
-    Snackbar snackbar;
     ProgressBar loader;
     ImageButton closeRecipe;
 
@@ -100,13 +98,10 @@ public class Administrativo extends Fragment {
         refresh = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
         loader = (ProgressBar) view.findViewById(R.id.loader);
 
-        new DataFetcherTask().execute();
 
         utils = new NetworkUtils(getActivity());
         if(utils.isConnectingToInternet()){
-        }
-        else{
-            snackbar.show();
+            new DataFetcherTask().execute();
         }
 
         refresh.setColorSchemeResources(R.color.colorPrimary);

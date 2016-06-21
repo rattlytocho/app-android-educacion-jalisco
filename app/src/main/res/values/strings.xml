@@ -4,6 +4,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string name="btn_text_close">Cerrar</string>
+
     <!--STRING MENUS-->
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="action_settings">Ajustes</string>
@@ -11,7 +13,7 @@
     <string name="action_refresh">Refrescar</string>
     <!--DRAWER NAV-->
     <string name="share_app">Comparte esta App</string>
-    <string name="about">Acerca</string>
+    <string name="about">Acerca de</string>
     <string name="communicate">"Cómunicate"</string>
     <string name="conv">Convocatorias</string>
     <string name="results">Resultados</string>
@@ -45,6 +47,43 @@
     <!--STRINGS BOTTOMSHEET-->
     <string name="numbers_telsep">TELSEP</string>
     <string name="numbers_calendario">Dudas Calendario</string>
+
+
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">SIGUIENTE</string>
+    <string name="skip">OMITIR</string>
+    <string name="start">EMPEZAR</string>
+
+    <string name="slide_1_title">"Eduación Jalisco"</string>
+    <string name="slide_1_desc">"Gracias por descargar la aplicación de la Secretaría de Educación Jalisco, ahora estaras informado de lo que sucede en el ambito educativo."</string>
+
+    <string name="slide_2_title">Si eres alumno</string>
+    <string name="slide_2_desc">"Podrás consultar información como avisos, convocatorias para becas, tu calendario escolar y mucho mas."</string>
+
+    <string name="slide_3_title">"Si trabajas en la Secretaría"</string>
+    <string name="slide_3_desc">"Podrás consultar información relacionada a los procesos del servicios profesional docente, noticias de tu interés y actividades relacionadas a tu labor docente o administrativa."</string>
+
+    <string name="slide_4_title">Como ciudadano</string>
+    <string name="slide_4_desc">"Enterate de la actividad de la Secretaría, te invitamos a seguirnos en nuestras redes sociales (agregar iconos de las redes face y twitter)"</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Otra vez</string>
+    <string name="title_activity_cafeteria">Cafeteria</string>
+    <string name="title_activity_about">About</string>
+
+    <!--VERSIONS-->
+    <string name="versions">Versiones</string>
+    <string name="latest_version">1.1.4</string>
+    <string name="version_1_1_3">1.1.3</string>
+    <string name="version_1_1_2">1.1.2</string>
+    <string name="version_1_1_1">1.1.1</string>
+
+
+    <!--VERSIONS DESC-->
+    <string name="des__1_1_1"><![CDATA[Lanzamiento de <b>Aplicación.</b>]]></string>
+    <string name="des__1_1_2"><![CDATA[Se añadió detalle de convocatoria \n Modificación de <b>slider de inicio.</b> \n Se agregó Splash screen.]]></string>
+    <string name="des__1_1_3"><![CDATA[Se añadió slider de introducción y Calendario Escolar \n Se corrigieron errores.]]></string>
+    <string name="des__1_1_4"><![CDATA[Se añadió sección de cafetería]]></string>
 
 
 </resources>

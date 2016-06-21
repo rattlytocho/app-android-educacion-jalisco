@@ -95,8 +95,8 @@
     </style>
 
     <style name="NavigationDrawerStyle">
-        <item name="android:textSize">20sp</item><!-- text size in menu-->
-        <item name="android:listPreferredItemHeightSmall">40dp</item><!-- item size in menu-->
+        <item name="android:textSize">20sp</item><!-- text size fade_in menu-->
+        <item name="android:listPreferredItemHeightSmall">40dp</item><!-- item size fade_in menu-->
     </style>
 
     <style name="ImageListRecipe">
@@ -112,6 +112,5 @@
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginBottom">8dp</item>
     </style>
-
 
 </resources>

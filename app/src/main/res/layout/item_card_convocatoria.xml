@@ -24,6 +24,7 @@
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_marginTop="@dimen/primary_title_top_padding"
             android:paddingLeft="@dimen/primary_title_left_padding"
+            android:transitionName="title"
             android:paddingRight="@dimen/primary_title_left_padding"
             android:text="Titulo de la convocatoria"
             android:layout_alignParentEnd="true" />
