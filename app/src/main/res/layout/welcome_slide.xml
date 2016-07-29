@@ -4,37 +4,36 @@
     android:layout_height="match_parent"
     android:background="@color/screen_slider_1">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="180dp"
-            android:src="@drawable/mano_slider"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/mano_slider"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/slide_1_title"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:textSize="@dimen/slide_title"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_marginBottom="22dp"
+            android:layout_above="@+id/textView7"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:paddingLeft="@dimen/desc_padding"
             android:paddingRight="@dimen/desc_padding"
             android:text="@string/slide_1_desc"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/slide_desc" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/slide_desc"
+            android:layout_marginBottom="63dp"
+            android:id="@+id/textView7"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
 
-    </LinearLayout>
 </RelativeLayout>

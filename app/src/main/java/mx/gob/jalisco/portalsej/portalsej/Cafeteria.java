@@ -13,7 +13,6 @@ public class Cafeteria extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cafeteria);
-        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         if (toolbar != null) {

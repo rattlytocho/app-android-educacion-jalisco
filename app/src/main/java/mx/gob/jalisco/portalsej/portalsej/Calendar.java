@@ -59,7 +59,6 @@ public class Calendar extends AppCompatActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         if (toolbar != null) {
@@ -94,14 +93,11 @@ public class Calendar extends AppCompatActivity implements View.OnClickListener 
     @Override
     protected void onPause() {
         super.onPause();
-        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
     }
 
     public void Callnumber(String number){

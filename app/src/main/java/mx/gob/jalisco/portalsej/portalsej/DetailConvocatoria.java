@@ -1,24 +1,30 @@
 package mx.gob.jalisco.portalsej.portalsej;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import mx.gob.jalisco.portalsej.portalsej.services.WebServices;
 
-public class DetailConvocatoria extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
+public class DetailConvocatoria extends AppCompatActivity implements View.OnClickListener {
 
     String Title;
     String Field_fecha_de_publicacion;
@@ -29,13 +35,11 @@ public class DetailConvocatoria extends AppCompatActivity implements AdapterView
     String Field_archivo;
     String View_node;
 
-
     TextView title;
     TextView field_fecha_de_publicacion;
     TextView field_fecha_de_vencimiento;
     TextView body;
 
-    Button view_on_web;
     Button download;
 
     @Override
@@ -49,12 +53,6 @@ public class DetailConvocatoria extends AppCompatActivity implements AdapterView
         body = (TextView) findViewById(R.id.body);
         title = (TextView) findViewById(R.id.title);
 
-        view_on_web = (Button) findViewById(R.id.view_on_web);
-        download = (Button) findViewById(R.id.download_file);
-
-        view_on_web.setOnClickListener(this);
-        download.setOnClickListener(this);
-
         Bundle bundle = this.getIntent().getExtras();
 
         Title = bundle.getString("TITLE");
@@ -66,6 +64,9 @@ public class DetailConvocatoria extends AppCompatActivity implements AdapterView
         Field_archivo = bundle.getString("FIELD_ARCHIVO");
         View_node = bundle.getString("VIEW_NODE");
 
+        download = (Button) findViewById(R.id.download_file);
+        assert download != null;
+        download.setOnClickListener(this);
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -77,32 +78,11 @@ public class DetailConvocatoria extends AppCompatActivity implements AdapterView
         field_fecha_de_publicacion.setText("De: " + Field_fecha_de_publicacion + " a: ");
         field_fecha_de_vencimiento.setText(Field_fecha_de_vencimiento);
 
-
+        body.setMovementMethod(LinkMovementMethod.getInstance());
         body.setText(Html.fromHtml(Body));
 
-        // Spinner element
-        Spinner spinner = (Spinner) findViewById(R.id.actions);
-
-        // Spinner click listener
-        spinner.setOnItemSelectedListener(this);
-
-        // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("Ver en sitio Web");
-        categories.add("Descargar archivo(s)");
-        categories.add("Informar un problema");
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,21 +96,36 @@ public class DetailConvocatoria extends AppCompatActivity implements AdapterView
     }
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
-        if(position == 1){
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present
+        if(Field_archivo!=""){
+            getMenuInflater().inflate(R.menu.menu_detail_convocatoria, menu);
         }
+        return true;
     }
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity fade_in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == R.id.action_view) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://148.243.161.231"+Field_archivo));
+                startActivity(browserIntent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.download_file) {
-
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://148.243.161.231"+Field_archivo));
+                startActivity(browserIntent);
         }
     }
 }

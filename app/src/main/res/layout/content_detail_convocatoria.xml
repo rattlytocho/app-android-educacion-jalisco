@@ -36,17 +36,6 @@
                 android:text="Titulo de la convocatoria"
                 android:layout_weight="0.31" />
 
-            <Spinner
-                android:id="@+id/actions"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:background="@drawable/ic_action_navigation_more_vert"
-                android:layout_weight="0.09"
-                android:gravity="center"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="8dp"/>
-
         </RelativeLayout>
 
         <View
@@ -88,12 +77,14 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:tint="@color/gray_700"
                 android:src="@drawable/ic_action_ic_picture_as_pdf_black_24dp_2x"/>
 
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginTop="5dp"
+                android:tint="@color/gray_700"
                 android:src="@drawable/ic_action_maestros"/>
 
         </LinearLayout>
@@ -113,6 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/text_margin"
+            android:layout_marginBottom="0dp"
             android:textSize="15dp"
             android:layout_below="@+id/divider2nd"/>
 
@@ -126,20 +118,13 @@
             android:layout_below="@+id/body">
 
             <Button
-                android:id="@+id/view_on_web"
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/view_on_website"
-                android:textColor="@color/colorPrimary"/>
-
-            <Button
                 android:id="@+id/download_file"
                 android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/download_file"
-                android:textColor="@color/colorPrimary"/>
+                android:text="@string/view_file"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/colorPrimary"/>
         </LinearLayout>
 
     </RelativeLayout>

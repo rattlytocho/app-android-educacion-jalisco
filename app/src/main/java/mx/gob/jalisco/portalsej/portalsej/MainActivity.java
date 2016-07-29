@@ -1,6 +1,7 @@
 package mx.gob.jalisco.portalsej.portalsej;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,13 +43,11 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        overridePendingTransition(R.anim.fade_out,R.anim.fade_out);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            //getSupportActionBar().setTitle("");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -88,19 +88,23 @@ public class MainActivity extends AppCompatActivity
 
     private void setupTabIcons() {
         View view1 = getLayoutInflater().inflate(R.layout.item_tab, null);
-        view1.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_action_home_primary);
+        ImageView image1 = (ImageView)  view1.findViewById(R.id.icon);
+        image1.setImageResource(R.drawable.ic_action_action_home_primary);
         tabLayout.getTabAt(0).setCustomView(view1);
 
         View view2 = getLayoutInflater().inflate(R.layout.item_tab, null);
-        view2.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_social_school_primary);
+        ImageView image2 = (ImageView)  view2.findViewById(R.id.icon);
+        image2.setImageResource(R.drawable.ic_action_social_school_primary);
         tabLayout.getTabAt(1).setCustomView(view2);
 
         View view3 = getLayoutInflater().inflate(R.layout.item_tab, null);
-        view3.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_maestros);
+        ImageView image3 = (ImageView)  view3.findViewById(R.id.icon);
+        image3.setImageResource(R.drawable.ic_action_maestros);
         tabLayout.getTabAt(2).setCustomView(view3);
 
         View view4 = getLayoutInflater().inflate(R.layout.item_tab, null);
-        view4.findViewById(R.id.icon).setBackgroundResource(R.drawable.ic_action_ciudadanos);
+        ImageView image4 = (ImageView)  view4.findViewById(R.id.icon);
+        image4.setImageResource(R.drawable.ic_action_ciudadanos);
         tabLayout.getTabAt(3).setCustomView(view4);
     }
 
@@ -186,13 +190,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         Intent intent = null;
 
-        if (id == R.id.nav_convocatorias) {
-            // Handle the camera action
-        } else if (id == R.id.nav_results) {
-
-        } else if (id == R.id.nav_news) {
-
-        } else if (id == R.id.nav_manage) {
+        if (id == R.id.nav_notifications) {
+            intent = new Intent(MainActivity.this, Notifications.class);
+        } else if (id == R.id.nav_new) {
+            intent = new Intent(MainActivity.this, MostConsulted.class);
+        }else if (id == R.id.nav_settings) {
 
         } else if (id == R.id.nav_share) {
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -114,15 +115,17 @@ public class Intro extends AppCompatActivity {
             addBottomDots(position);
 
             if(position == 0){
-                btnNext.setColorFilter(Color.parseColor("#8f1336"));
-                btnSkip.setTextColor(Color.parseColor("#8f1336"));
+                btnNext.setColorFilter(Color.parseColor("#ffffff"));
+                btnSkip.setTextColor(Color.parseColor("#ffffff"));
             }else{
                 btnNext.setColorFilter(Color.parseColor("#ffffff"));
                 btnSkip.setTextColor(Color.parseColor("#ffffff"));
             }
 
             if (position == layouts.length - 1) {
+                btnNext.setColorFilter(Color.parseColor("#000000"));
                 btnSkip.setVisibility(View.GONE);
+                btnNext.setImageResource(R.drawable.ic_action_action_done);
             } else {
                 btnSkip.setVisibility(View.VISIBLE);
             }

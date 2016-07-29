@@ -33,7 +33,6 @@ public class About extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -99,7 +98,9 @@ public class About extends AppCompatActivity {
         recycler.setLayoutManager(lManager);
         recycler.setNestedScrollingEnabled(false);
         items = new ArrayList<>();
-        items.add(new Version(getString(R.string.latest_version) , Html.fromHtml(getString(R.string.des__1_1_4))));
+        items.add(new Version(getString(R.string.latest_version) , Html.fromHtml(getString(R.string.des__1_1_6))));
+        items.add(new Version(getString(R.string.version_1_1_5) , Html.fromHtml(getString(R.string.des__1_1_5))));
+        items.add(new Version(getString(R.string.version_1_1_4) , Html.fromHtml(getString(R.string.des__1_1_4))));
         items.add(new Version(getString(R.string.version_1_1_3) , Html.fromHtml(getString(R.string.des__1_1_3))));
         items.add(new Version(getString(R.string.version_1_1_2) , Html.fromHtml(getString(R.string.des__1_1_2))));
         items.add(new Version(getString(R.string.version_1_1_1) , Html.fromHtml(getString(R.string.des__1_1_1))));

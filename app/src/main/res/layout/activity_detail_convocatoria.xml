@@ -58,8 +58,7 @@
         app:layout_anchorGravity="bottom|right|end"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
-        android:tint="@color/colorPrimary"
-        app:backgroundTint="@color/white"
+        app:backgroundTint="@color/colorPrimary"
         app:pressedTranslationZ="6dp"
         app:rippleColor="@color/white" />
 

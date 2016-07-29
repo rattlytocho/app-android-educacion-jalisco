@@ -4,38 +4,35 @@
     android:layout_height="match_parent"
     android:background="@color/screen_slider_4">
 
-    <LinearLayout
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ciudadanos_slider"/>
+
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:text="@string/slide_4_title"
+        android:textSize="@dimen/slide_title"
+        android:textStyle="bold"
+        android:layout_marginBottom="22dp"
+        android:layout_above="@+id/textView7"
+        android:layout_centerHorizontal="true" />
 
-        <ImageView
-            android:layout_width="290dp"
-            android:layout_height="170dp"
-            android:background="@drawable/ciudadanos_slider"
-            android:layout_marginBottom="@dimen/activity_horizontal_margin"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/slide_4_title"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/slide_title"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="@dimen/desc_padding"
-            android:paddingRight="@dimen/desc_padding"
-            android:text="@string/slide_4_desc"
-            android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/slide_desc" />
-
-    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/desc_padding"
+        android:paddingRight="@dimen/desc_padding"
+        android:text="@string/slide_4_desc"
+        android:textAlignment="center"
+        android:textSize="@dimen/slide_desc"
+        android:layout_marginBottom="63dp"
+        android:id="@+id/textView7"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
