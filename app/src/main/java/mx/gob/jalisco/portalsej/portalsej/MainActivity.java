@@ -1,5 +1,8 @@
 package mx.gob.jalisco.portalsej.portalsej;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -26,18 +29,20 @@ import mx.gob.jalisco.portalsej.portalsej.fragments.Administrativo;
 import mx.gob.jalisco.portalsej.portalsej.fragments.Alumnos;
 import mx.gob.jalisco.portalsej.portalsej.fragments.Ciudadania;
 import mx.gob.jalisco.portalsej.portalsej.fragments.Inicio;
+import mx.gob.jalisco.portalsej.portalsej.services.NotifyService;
 import mx.gob.jalisco.portalsej.portalsej.utils.Utils;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String PREF_USER_FIRST_TIME = "user_first_time";
-    public static final String PREF_USER_VIEW_RECIPE = "user_view_recipe";
+    public static final String PREF_USER_VIEW_RECIPE = "typw_view";
 
     boolean isUserFirstTime;
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    PendingIntent pendingIntent;
     Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +61,13 @@ public class MainActivity extends AppCompatActivity
         Intent introIntent = new Intent(MainActivity.this, Intro.class);
         introIntent.putExtra(PREF_USER_FIRST_TIME, isUserFirstTime);
 
+        Intent alarmIntent = new Intent(MainActivity.this, NotifyService.class);
+        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmIntent, 0);
+
         if (isUserFirstTime) {
-            //Utils.saveSharedSetting(MainActivity.this, MainActivity.PREF_USER_VIEW_RECIPE, "card");
-            //Utils.saveSharedSetting(MainActivity.this, NotifyService.PREF_USER_LASTRECIPE, "0");
-            //Utils.saveSharedSetting(MainActivity.this, Settings.PREF_USER_NOTIFICATIONS, "true");
-            //Utils.saveSharedSetting(MainActivity.this, Settings.PREF_USER_DIARY_NOTIFICATIONS, "false");
+            Utils.saveSharedSetting(MainActivity.this, NotifyService.PREF_USER_LAST_NOTIFICACTION,"0");
+            Utils.saveSharedSetting(MainActivity.this, PREF_USER_VIEW_RECIPE,"list");
+            Utils.saveSharedSetting(MainActivity.this,PREF_USER_FIRST_TIME,"false");
             startActivity(introIntent);
         }
 
@@ -84,6 +91,15 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         setupTabIcons();
+        enableNotifications();
+    }
+
+    public void enableNotifications(){
+        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        long updateInterval = 30000;
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + updateInterval, updateInterval, pendingIntent);
+
     }
 
     private void setupTabIcons() {
