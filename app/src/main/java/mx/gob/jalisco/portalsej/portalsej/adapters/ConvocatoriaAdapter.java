@@ -22,10 +22,6 @@ import mx.gob.jalisco.portalsej.portalsej.R;
 import mx.gob.jalisco.portalsej.portalsej.objects.Convocatoria;
 import mx.gob.jalisco.portalsej.portalsej.utils.Utils;
 
-/**
- * Created by root on 8/06/16.
- */
-
 public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapter.ViewHolder> {
 
     List<Convocatoria> items = new ArrayList<>();
@@ -77,18 +73,9 @@ public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapte
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = null;
 
-        String type = Utils.readSharedSetting(context, MainActivity.PREF_USER_VIEW_RECIPE, "true");
-
-        if(Objects.equals(type, "list")){
-            //v = LayoutInflater.from(viewGroup.getContext())
-              //      .inflate(R.layout.list_item_recipe, viewGroup, false);
-            return new ViewHolder(v,this);
-
-        }else{
-            v = LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.item_card_convocatoria, viewGroup, false);
-            return new ViewHolder(v,this);
-        }
+        v = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.item_card_convocatoria, viewGroup, false);
+        return new ViewHolder(v,this);
     }
 
     @Override

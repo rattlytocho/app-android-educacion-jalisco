@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
 
         if (isUserFirstTime) {
             Utils.saveSharedSetting(MainActivity.this, NotifyService.PREF_USER_LAST_NOTIFICACTION,"0");
-            Utils.saveSharedSetting(MainActivity.this, PREF_USER_VIEW_RECIPE,"list");
+            Utils.saveSharedSetting(MainActivity.this, PREF_USER_VIEW_RECIPE,"card");
             Utils.saveSharedSetting(MainActivity.this,PREF_USER_FIRST_TIME,"false");
             startActivity(introIntent);
         }
