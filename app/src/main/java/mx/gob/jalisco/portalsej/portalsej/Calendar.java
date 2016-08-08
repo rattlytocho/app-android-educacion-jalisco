@@ -42,7 +42,7 @@ public class Calendar extends AppCompatActivity implements View.OnClickListener 
             R.drawable.febrero,
             R.drawable.marzo,
             R.drawable.abril,
-            R.drawable.marzo,
+            R.drawable.mayo,
             R.drawable.junio,
             R.drawable.julio
     };

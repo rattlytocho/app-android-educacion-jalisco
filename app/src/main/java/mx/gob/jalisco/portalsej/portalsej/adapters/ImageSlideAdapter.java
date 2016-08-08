@@ -1,6 +1,8 @@
 package mx.gob.jalisco.portalsej.portalsej.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -60,7 +62,8 @@ public class ImageSlideAdapter extends PagerAdapter {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(items.get(position).getUrl()));
+                context.startActivity(browserIntent);
             }
         });
         view.addView(imageLayout, 0);

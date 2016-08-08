@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +82,7 @@ public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapte
     @Override
     public void onBindViewHolder(final ViewHolder viewHolder, int i) {
 
-        viewHolder.title.setText(items.get(i).getTitle());
+        viewHolder.title.setText(Html.fromHtml(items.get(i).getTitle()).toString());
         viewHolder.field_fecha_de_publicacion.setText("Del: "+items.get(i).getField_fecha_de_publicacion());
 
         final int item = i;
@@ -92,6 +93,7 @@ public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapte
                 Intent intent = new Intent(context, DetailConvocatoria.class);
                 Bundle bundle =new Bundle();
 
+                bundle.putString("TYPE","NOT SEARCH");
                 bundle.putString("TITLE", items.get(item).getTitle());
                 bundle.putString("FIELD_FECHA_DE_PUBLICACION", items.get(item).getField_fecha_de_publicacion());
                 bundle.putString("FIELD_FECHA_DE_VENCIMIENTO", items.get(item).getField_fecha_de_vencimiento());
@@ -101,10 +103,9 @@ public class ConvocatoriaAdapter extends RecyclerView.Adapter<ConvocatoriaAdapte
                 bundle.putString("FIELD_ARCHIVO", items.get(item).getField_archivo());
                 bundle.putString("VIEW_NODE", items.get(item).getView_node());
 
-                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, viewHolder.title, viewHolder.title.getTransitionName());
-
                 intent.putExtras(bundle);
-                context.startActivity(intent, options.toBundle());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
                 //((Activity)  context).overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
 

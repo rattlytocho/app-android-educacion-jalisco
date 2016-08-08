@@ -1,26 +1,35 @@
 package mx.gob.jalisco.portalsej.portalsej;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.PermissionRequest;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +42,11 @@ import mx.gob.jalisco.portalsej.portalsej.services.NotifyService;
 import mx.gob.jalisco.portalsej.portalsej.utils.Utils;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener {
 
     public static final String PREF_USER_FIRST_TIME = "user_first_time";
     public static final String PREF_USER_VIEW_RECIPE = "typw_view";
+    private static final int PERMISSION_CALL_PHONE = 0;
 
     boolean isUserFirstTime;
 
@@ -56,6 +66,20 @@ public class MainActivity extends AppCompatActivity
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CALL_PHONE)) {
+
+            } else {
+
+                ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CALL_PHONE}, PERMISSION_CALL_PHONE );
+
+            }
+        }
+
         isUserFirstTime = Boolean.valueOf(Utils.readSharedSetting(MainActivity.this, PREF_USER_FIRST_TIME, "true"));
 
         Intent introIntent = new Intent(MainActivity.this, Intro.class);
@@ -65,9 +89,10 @@ public class MainActivity extends AppCompatActivity
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, alarmIntent, 0);
 
         if (isUserFirstTime) {
-            Utils.saveSharedSetting(MainActivity.this, NotifyService.PREF_USER_LAST_NOTIFICACTION,"0");
-            Utils.saveSharedSetting(MainActivity.this, PREF_USER_VIEW_RECIPE,"card");
-            Utils.saveSharedSetting(MainActivity.this,PREF_USER_FIRST_TIME,"false");
+            Utils.saveSharedSetting(this, Notifications.PREF_NOTIFICATIONS_FIRST_TIME,"true");
+            Utils.saveSharedSetting(this, NotifyService.PREF_USER_LAST_NOTIFICACTION,"0");
+            Utils.saveSharedSetting(this, PREF_USER_VIEW_RECIPE,"card");
+            Utils.saveSharedSetting(this,PREF_USER_FIRST_TIME,"false");
             startActivity(introIntent);
         }
 
@@ -97,7 +122,7 @@ public class MainActivity extends AppCompatActivity
     public void enableNotifications(){
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        long updateInterval = 30000;
+        long updateInterval = 600000;
         manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + updateInterval, updateInterval, pendingIntent);
 
     }
@@ -131,6 +156,17 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new Administrativo(), "Docentes");
         adapter.addFragment(new Ciudadania(), "Ciudadania");
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        Log.i("QUERY",query);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -179,6 +215,14 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
         return true;
     }
 
@@ -210,10 +254,12 @@ public class MainActivity extends AppCompatActivity
             intent = new Intent(MainActivity.this, Notifications.class);
         } else if (id == R.id.nav_new) {
             intent = new Intent(MainActivity.this, MostConsulted.class);
-        }else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_share) {
-
+        }else if (id == R.id.nav_share) {
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Hola descarga la nueva app de Educación Jalisco https://play.google.com/store/apps/details?id=mx.gob.jalisco.portalsej.portalsej");
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
         } else if (id == R.id.nav_info) {
             intent = new Intent(MainActivity.this, About.class);
         }

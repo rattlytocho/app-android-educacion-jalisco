@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
     <!--COLORES PRINCIPALES-->
     <color name="colorPrimary">#4CAF50</color>
     <color name="colorPrimaryDark">#398b3d</color>
-    <color name="colorAccent">#383838</color>
+    <color name="colorAccent">#455A64</color>
     <color name="transluced">#804CAF50</color>
     <color name="blue_grey">#455A64</color>
 

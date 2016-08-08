@@ -23,9 +23,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import mx.gob.jalisco.portalsej.portalsej.R;
 import mx.gob.jalisco.portalsej.portalsej.adapters.ConvocatoriaAdapter;
@@ -55,15 +62,7 @@ public class Administrativo extends Fragment {
     public Administrativo() {
         // Required empty public constructor
     }
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Administrativo.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static Administrativo newInstance(String param1, String param2) {
         Administrativo fragment = new Administrativo();
         Bundle args = new Bundle();
@@ -101,7 +100,7 @@ public class Administrativo extends Fragment {
 
         utils = new NetworkUtils(getActivity());
         if(utils.isConnectingToInternet()){
-            new DataFetcherTask().execute();
+            new getJson().execute(WebServices.HOST_SERVICES+"/"+WebServices.PERFILES[1]+"/"+WebServices.CONVOTATORIAS);
         }
 
         refresh.setColorSchemeResources(R.color.colorPrimary);
@@ -110,14 +109,15 @@ public class Administrativo extends Fragment {
             @Override
             public void onRefresh() {
                 if(utils.isConnectingToInternet()){
-                    new DataFetcherTask().execute();
+                    new getJson().execute(WebServices.HOST_SERVICES+"/"+WebServices.PERFILES[1]+"/"+WebServices.CONVOTATORIAS);
                 }
             }
         });
 
         return view;
     }
-    class DataFetcherTask extends AsyncTask<Void,Void,Void> {
+
+    class getJson extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
@@ -128,38 +128,65 @@ public class Administrativo extends Fragment {
             loader.setVisibility(View.VISIBLE);
         }
 
-        @Override
-        protected Void doInBackground(Void... params) {
-            String serverData = null;// String object to store fetched data from server
-            // Http Request Code start
-            DefaultHttpClient httpClient = new DefaultHttpClient();
-            String URLSERVICES = WebServices.HOST_SERVICES+"/"+WebServices.PERFILES[1]+"/"+WebServices.CONVOTATORIAS;
-            HttpGet httpGet = new HttpGet(URLSERVICES);
+        protected String doInBackground(String... params) {
+            HttpURLConnection connection = null;
             try {
-                HttpResponse httpResponse = httpClient.execute(httpGet);
-                HttpEntity httpEntity = httpResponse.getEntity();
-                serverData = EntityUtils.toString(httpEntity);
-                Log.d("Response Data", serverData);
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                URL u = new URL(params[0]);
+                connection = (HttpURLConnection) u.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Content-length", "0");
+                connection.setUseCaches(false);
+                connection.setAllowUserInteraction(false);
+                connection.setConnectTimeout(100000);
+                connection.setReadTimeout(100000);
+                connection.connect();
+                int status = connection.getResponseCode();
+
+                switch (status) {
+                    case 200:
+                    case 201:
+                        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        StringBuilder sb = new StringBuilder();
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line+"\n");
+                        }
+                        br.close();
+                        return sb.toString();
+                }
+
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (connection != null) {
+                    try {
+                        connection.disconnect();
+                    } catch (Exception ex) {
+                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
+            return null;
+        }
 
+        protected void onPostExecute(String json) {
             try {
-                JSONArray jsonArray = new JSONArray(serverData);
+                if(json != null) {
+                    JSONArray jsonArray = new JSONArray(json);
 
-                for (int i=0;i<jsonArray.length();i++) {
-                    JSONObject jsonObjectC = jsonArray.getJSONObject(i);
+                    for (int i=0;i<jsonArray.length();i++) {
+                        JSONObject jsonObjectC = jsonArray.getJSONObject(i);
 
-                    String title = jsonObjectC.getString("title");
-                    String field_fecha_de_publicacion = jsonObjectC.getString("field_fecha_de_publicacion");
-                    String field_fecha_de_vencimiento = jsonObjectC.getString("field_fecha_de_vencimiento");
-                    String field_nivel = jsonObjectC.getString("field_nivel");
-                    String field_perfil = jsonObjectC.getString("field_perfil");
-                    String body = jsonObjectC.getString("body");
-                    String field_archivo = jsonObjectC.getString("field_archivo");
-                    String view_node = jsonObjectC.getString("path");
+                        String title = jsonObjectC.getString("title");
+                        String field_fecha_de_publicacion = jsonObjectC.getString("field_fecha_de_publicacion");
+                        String field_fecha_de_vencimiento = jsonObjectC.getString("field_fecha_de_vencimiento");
+                        String field_nivel = jsonObjectC.getString("field_nivel");
+                        String field_perfil = jsonObjectC.getString("field_perfil");
+                        String body = jsonObjectC.getString("body");
+                        String field_archivo = jsonObjectC.getString("field_archivo");
+                        String view_node = jsonObjectC.getString("path");
 
                     /*
                     REPLACE SCAPE CHARACTERS TO SLASH
@@ -167,22 +194,15 @@ public class Administrativo extends Fragment {
                         var = var.replaceAll("&quot;", "\"");
                     }*/
 
-                    items.add(new Convocatoria(title, field_fecha_de_publicacion, field_fecha_de_vencimiento, field_nivel, field_perfil, body, field_archivo, view_node));
-                }
-                adapter = new ConvocatoriaAdapter(items, getContext());
+                        items.add(new Convocatoria(title, field_fecha_de_publicacion, field_fecha_de_vencimiento, field_nivel, field_perfil, body, field_archivo, view_node));
+                    }
+                    adapter = new ConvocatoriaAdapter(items, getContext());
 
+                }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
             adapter = new ConvocatoriaAdapter(items, getContext());
             recycler.setAdapter(adapter);
             refresh.setRefreshing(false);

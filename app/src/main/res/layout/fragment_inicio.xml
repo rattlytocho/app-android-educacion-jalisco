@@ -103,8 +103,7 @@
                     android:layout_height="wrap_content"
                     card_view:cardElevation="4dp"
                     card_view:cardCornerRadius="2dp"
-                    android:visibility="gone"
-                    card_view:cardBackgroundColor="@color/colorAccent"
+                    card_view:cardBackgroundColor="@color/colorPrimary"
                     android:layout_marginLeft="@dimen/margin_text_calendar"
                     android:layout_marginRight="@dimen/margin_text_calendar"
                     android:layout_marginBottom="8dp"
@@ -117,13 +116,14 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_action_maps_restaurant_menu"
+                            android:src="@drawable/ic_action_communication_comment_accent"
+                            android:tint="@color/white"
                             android:id="@+id/cafeteria_icon" />
 
                         <TextView
                             android:layout_width="30dp"
                             android:layout_height="60dp"
-                            android:text="@string/cafeteria"
+                            android:text="@string/contact"
                             style="@style/Base.TextAppearance.AppCompat.Title"
                             android:layout_alignParentEnd="true"
                             android:gravity="center_vertical"
@@ -150,12 +150,20 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/container_calendar">
 
+                <TextView
+                    android:id="@+id/title_tweets"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tweets de la Secretaría"
+                    android:textSize="16dp"
+                    android:layout_margin="8dp"
+                    android:textColor="@color/blue_grey"/>
+
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/tweetsRecycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentStart="true"/>
+                    android:layout_below="@+id/title_tweets"/>
 
             </RelativeLayout>
 

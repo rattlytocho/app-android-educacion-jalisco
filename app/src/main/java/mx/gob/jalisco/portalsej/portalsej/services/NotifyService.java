@@ -15,6 +15,8 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
+import android.view.View;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -24,15 +26,24 @@ import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import mx.gob.jalisco.portalsej.portalsej.Notifications;
 import mx.gob.jalisco.portalsej.portalsej.R;
+import mx.gob.jalisco.portalsej.portalsej.adapters.NotificationAdapter;
+import mx.gob.jalisco.portalsej.portalsej.objects.Notification;
 import mx.gob.jalisco.portalsej.portalsej.utils.NetworkUtils;
 import mx.gob.jalisco.portalsej.portalsej.utils.Utils;
 
@@ -47,7 +58,7 @@ public class NotifyService extends BroadcastReceiver {
     String imagen;
     String id;
     String publicado;
-    int get_last_time;
+    String get_last_time;
 
     public static final String PREF_USER_LAST_NOTIFICACTION = "0";
     String last_time;
@@ -59,7 +70,7 @@ public class NotifyService extends BroadcastReceiver {
         utils = new NetworkUtils(ctx);
 
         if(utils.isConnectingToInternet()){
-            new DataFetcherTask().execute();
+            new getDataNotification().execute(WebServices.HOST_SERVICES+"/"+WebServices.LASTEST_NOTIFICACION);
         }
     }
 
@@ -72,66 +83,91 @@ public class NotifyService extends BroadcastReceiver {
         }
     }
 
-    class DataFetcherTask extends AsyncTask<Void,Void,Void> {
+    class getDataNotification extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
 
-        @Override
-        protected Void doInBackground(Void... params) {
-            String serverData = null;// String object to store fetched data from server
-            // Http Request Code start
-            DefaultHttpClient httpClient = new DefaultHttpClient();
-            String URL = WebServices.HOST_SERVICES+"/"+WebServices.LASTEST_NOTIFICACION;
-            HttpGet httpGet = new HttpGet(URL);
+        protected String doInBackground(String... params) {
+            HttpURLConnection connection = null;
             try {
-                HttpResponse httpResponse = httpClient.execute(httpGet);
-                HttpEntity httpEntity = httpResponse.getEntity();
-                serverData = EntityUtils.toString(httpEntity);
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                JSONArray jsonArray = new JSONArray(serverData);
-                JSONObject jsonObject = jsonArray.getJSONObject(0);
-                node_title = jsonObject.getString("title");
-                cuerpo = jsonObject.getString("body");
-                id = jsonObject.getString("nid");
-                imagen = jsonObject.getString("field_archivo");
-                publicado = jsonObject.getString("created");
-                get_last_time = Integer.parseInt(id);
+                URL u = new URL(params[0]);
+                connection = (HttpURLConnection) u.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Content-length", "0");
+                connection.setUseCaches(false);
+                connection.setAllowUserInteraction(false);
+                connection.setConnectTimeout(100000);
+                connection.setReadTimeout(100000);
+                connection.connect();
+                int status = connection.getResponseCode();
 
-                Log.i("NEW NID ",get_last_time+"");
-                Log.i("IMAGEN","____"+imagen);
+                switch (status) {
+                    case 200:
+                    case 201:
+                        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        StringBuilder sb = new StringBuilder();
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line+"\n");
+                        }
+                        br.close();
+                        return sb.toString();
+                }
 
-                last_time = Utils.readSharedSetting(ctx, PREF_USER_LAST_NOTIFICACTION, "true");
-
-                Log.i("NID IN STORAGE",last_time);
-
-                //Utils.saveSharedSetting(ctx, NotifyService.PREF_USER_LAST_NOTIFICACTION, "");
-
-            } catch (JSONException e) {
-                e.printStackTrace();
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (connection != null) {
+                    try {
+                        connection.disconnect();
+                    } catch (Exception ex) {
+                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
             return null;
         }
 
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            if(Integer.valueOf(last_time) != get_last_time ){
-                if(imagen.equals("")){
-                    simpleNotification();
-                    Log.i("NOTIFICATION TYPE","SIMPLE");
-                }else{
-                    new sendNotification(ctx).execute(node_title, publicado, imagen);
-                    Log.i("NOTIFICATION TYPE","W-IMAGE");
+        protected void onPostExecute(String json) {
+            try {
+                if(json != null){
+                    Log.i("SERVER DATA","-->"+json);
+                    JSONArray jsonArray = new JSONArray(json);
+                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+                    node_title = jsonObject.getString("title");
+                    cuerpo = jsonObject.getString("body");
+                    id = jsonObject.getString("nid");
+                    imagen = jsonObject.getString("field_archivo");
+                    publicado = jsonObject.getString("created");
+                    get_last_time = id;
+
+                    last_time = Utils.readSharedSetting(ctx, PREF_USER_LAST_NOTIFICACTION, "true");
+
+                    //Utils.saveSharedSetting(ctx, NotifyService.PREF_USER_LAST_NOTIFICACTION, "");
                 }
-                Utils.saveSharedSetting(ctx, NotifyService.PREF_USER_LAST_NOTIFICACTION, String.valueOf(get_last_time));
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            Log.i("NEW NID ",get_last_time+" NIEW NID");
+            Log.i("NID IN STORAGE",last_time+" NID IN STORAGE");
+            if(get_last_time != null){
+                if(Integer.valueOf(last_time) < Integer.valueOf(get_last_time)){
+                    if(imagen.equals("")){
+                        simpleNotification();
+                        Log.i("NOTIFICATION TYPE","SIMPLE");
+                    }else{
+                        new sendNotification(ctx).execute(node_title, publicado, imagen);
+                        Log.i("NOTIFICATION TYPE","W-IMAGE");
+                    }
+                    Utils.saveSharedSetting(ctx, NotifyService.PREF_USER_LAST_NOTIFICACTION, String.valueOf(get_last_time));
+                }
             }
         }
     }

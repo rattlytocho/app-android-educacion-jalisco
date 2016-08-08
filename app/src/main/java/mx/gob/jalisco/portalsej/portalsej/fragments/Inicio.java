@@ -19,24 +19,25 @@ import android.widget.RelativeLayout;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import mx.gob.jalisco.portalsej.portalsej.Cafeteria;
 import mx.gob.jalisco.portalsej.portalsej.Calendar;
+import mx.gob.jalisco.portalsej.portalsej.Contact;
 import mx.gob.jalisco.portalsej.portalsej.R;
 import mx.gob.jalisco.portalsej.portalsej.adapters.ImageSlideAdapter;
 import mx.gob.jalisco.portalsej.portalsej.adapters.TweetAdapter;
@@ -87,8 +88,8 @@ public class Inicio extends Fragment implements View.OnClickListener{
         utils = new NetworkUtils(getActivity());
 
         if(utils.isConnectingToInternet()){
-            new DataFetcherTask().execute();
-            new DataSlider().execute();
+            new getJson().execute(WebServices.HOST_SERVICES+"/"+WebServices.SLIDER);
+            new getTweet().execute("http://edu.jalisco.gob.mx/e-gobierno/appservices/tweets/tweets_get.php");
         }
 
         launcher_calendar = (RelativeLayout) view.findViewById(R.id.launcher_calendar);
@@ -105,57 +106,79 @@ public class Inicio extends Fragment implements View.OnClickListener{
             Intent intent = new Intent(getContext(), Calendar.class);
             startActivity(intent);
         }else if(id == R.id.launcher_cafetaría){
-            Intent intent = new Intent(getContext(), Cafeteria.class);
+            Intent intent = new Intent(getContext(), Contact.class);
             startActivity(intent);
         }
     }
 
-    class DataFetcherTask extends AsyncTask<Void,Void,Void> {
+    class getJson extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            items.clear();
+            itemsSlide = new ArrayList<>();
         }
 
-        @Override
-        protected Void doInBackground(Void... params) {
-            String serverData = null;// String object to store fetched data from server
-            // Http Request Code start
-            DefaultHttpClient httpClient = new DefaultHttpClient();
-            String URLSERVICES = WebServices.HOST_SERVICES+"/"+WebServices.SLIDER;
-            HttpGet httpGet = new HttpGet(URLSERVICES);
+        protected String doInBackground(String... params) {
+            HttpURLConnection connection = null;
             try {
-                HttpResponse httpResponse = httpClient.execute(httpGet);
-                HttpEntity httpEntity = httpResponse.getEntity();
-                serverData = EntityUtils.toString(httpEntity);
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                URL u = new URL(params[0]);
+                connection = (HttpURLConnection) u.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Content-length", "0");
+                connection.setUseCaches(false);
+                connection.setAllowUserInteraction(false);
+                connection.setConnectTimeout(100000);
+                connection.setReadTimeout(100000);
+                connection.connect();
+                int status = connection.getResponseCode();
 
-            try {
-                JSONArray jsonArray = new JSONArray(serverData);
-                for (int i=0;i<jsonArray.length();i++){
-                    JSONObject jsonObjectTweet = jsonArray.getJSONObject(i);
-
-                    String SlideTitle = jsonObjectTweet.getString("title");
-                    String SlideUrl = jsonObjectTweet.getString("field_url_al_sitio_web");
-                    String SlideImage = jsonObjectTweet.getString("field_image");
-
-                    itemsSlide.add(new Slide(SlideImage, SlideTitle, SlideUrl));
+                switch (status) {
+                    case 200:
+                    case 201:
+                        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        StringBuilder sb = new StringBuilder();
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line+"\n");
+                        }
+                        br.close();
+                        return sb.toString();
                 }
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (connection != null) {
+                    try {
+                        connection.disconnect();
+                    } catch (Exception ex) {
+                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
             return null;
         }
 
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
+        protected void onPostExecute(String json) {
+            try {
+                if(json != null) {
+                    JSONArray jsonArray = new JSONArray(json);
+                    for (int i=0;i<jsonArray.length();i++){
+                        JSONObject jsonObjectTweet = jsonArray.getJSONObject(i);
+
+                        String SlideTitle = jsonObjectTweet.getString("title");
+                        String SlideUrl = jsonObjectTweet.getString("field_url_al_sitio_web");
+                        String SlideImage = jsonObjectTweet.getString("field_jssor_image");
+
+                        itemsSlide.add(new Slide(SlideImage, SlideTitle, SlideUrl));
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
             mPager = (ViewPager) V.findViewById(R.id.pager);
 
@@ -207,68 +230,89 @@ public class Inicio extends Fragment implements View.OnClickListener{
         }
     }
 
-    class DataSlider extends AsyncTask<Void,Void,Void> {
+    class getTweet extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            itemsSlide.clear();
+            items = new ArrayList<>();
         }
 
-        @Override
-        protected Void doInBackground(Void... params) {
-            String serverData = null;
-            DefaultHttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet("http://estudiaen.jalisco.gob.mx/appservices/tweets/tweets_get.php");
+        protected String doInBackground(String... params) {
+            HttpURLConnection connection = null;
             try {
-                HttpResponse httpResponse = httpClient.execute(httpGet);
-                HttpEntity httpEntity = httpResponse.getEntity();
-                serverData = EntityUtils.toString(httpEntity);
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                URL u = new URL(params[0]);
+                connection = (HttpURLConnection) u.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Content-length", "0");
+                connection.setUseCaches(false);
+                connection.setAllowUserInteraction(false);
+                connection.setConnectTimeout(100000);
+                connection.setReadTimeout(100000);
+                connection.connect();
+                int status = connection.getResponseCode();
+
+                switch (status) {
+                    case 200:
+                    case 201:
+                        BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        StringBuilder sb = new StringBuilder();
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            sb.append(line+"\n");
+                        }
+                        br.close();
+                        return sb.toString();
+                }
+
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            } finally {
+                if (connection != null) {
+                    try {
+                        connection.disconnect();
+                    } catch (Exception ex) {
+                        Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
+            return null;
+        }
 
+        protected void onPostExecute(String json) {
             try {
-                JSONObject jsonObject = new JSONObject(serverData);
-                JSONArray jsonArray = jsonObject.getJSONArray("tweets");
-                for (int i=0;i<jsonArray.length();i++){
-                    JSONObject jsonObjectTweet = jsonArray.getJSONObject(i);
+                if(json != null) {
+                    JSONObject jsonObject = new JSONObject(json);
+                    JSONArray jsonArray = jsonObject.getJSONArray("tweets");
+                    for (int i=0;i<jsonArray.length();i++){
+                        JSONObject jsonObjectTweet = jsonArray.getJSONObject(i);
 
-                    String tweetText = jsonObjectTweet.getString("text");
-                    String tweetDate = jsonObjectTweet.getString("fecha");
-                    String image = jsonObjectTweet.getString("imagen_perfil");
-                    if(tweetText.indexOf("&quot;") > 0 ){
-                        tweetText = tweetText.replaceAll("&quot;", "\"");
+                        String tweetText = jsonObjectTweet.getString("text");
+                        String tweetDate = jsonObjectTweet.getString("fecha");
+                        String image = jsonObjectTweet.getString("imagen_perfil");
+                        if(tweetText.indexOf("&quot;") > 0 ){
+                            tweetText = tweetText.replaceAll("&quot;", "\"");
+                        }
+
+                        SpannableString hashText = new SpannableString(tweetText);
+                        Matcher matcher = Pattern.compile("#([A-Za-z0-9_-]+)").matcher(hashText);
+                        while (matcher.find()) {
+                            hashText.setSpan(new ForegroundColorSpan(Color.rgb(22, 132, 180)), matcher.start(), matcher.end(), 0);
+                        }
+                        Linkify.addLinks(hashText, Linkify.WEB_URLS);
+
+                        items.add(new Tweet(image, tweetText, tweetDate));
                     }
-
-                    SpannableString hashText = new SpannableString(tweetText);
-                    Matcher matcher = Pattern.compile("#([A-Za-z0-9_-]+)").matcher(hashText);
-                    while (matcher.find()) {
-                        hashText.setSpan(new ForegroundColorSpan(Color.rgb(22, 132, 180)), matcher.start(), matcher.end(), 0);
-                    }
-                    Linkify.addLinks(hashText, Linkify.WEB_URLS);
-
-                    items.add(new Tweet(image, tweetText, tweetDate));
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
             adapter = new TweetAdapter(items,getActivity());
 
             recycler.setAdapter(adapter);
-
-            /*textTweet.setText(TweetText);
-            date.setText(TweetDate);*/
-
         }
     }
 

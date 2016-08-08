@@ -11,13 +11,15 @@ public class Notification {
     private String title;
     private String time_ago;
     private String body;
+    private String image;
     public static List<Notification> Notification = new ArrayList<>();
 
 
-    public Notification(String title, String time_ago, String body) {
+    public Notification(String title, String time_ago, String body,String image) {
         this.title = title;
         this.time_ago = time_ago;
         this.body = body;
+        this.image = image;
     }
 
     public String getTitle() {
@@ -40,7 +42,15 @@ public class Notification {
         return body;
     }
 
-    public void setBody(String image) {
+    public void setBody(String body) {
         this.body = body;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

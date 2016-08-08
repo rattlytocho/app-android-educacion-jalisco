@@ -23,7 +23,7 @@
     <string name="administrativo">Administrativo</string>
     <string name="ciudadania">"Ciudadanía</string>
     <string name="calendario">Calendario Escolar 2016 – 2017</string>
-    <string name="cafeteria">"Menú Cafetería"</string>
+    <string name="contact">Contacto</string>
     <string name="title_activity_calendar">Calendario Escolar</string>
 
     <!--STRINGS BUTTONS-->
@@ -48,32 +48,37 @@
     <string name="numbers_telsep">TELSEP</string>
     <string name="numbers_calendario">Dudas Calendario</string>
 
-
     <string name="title_activity_welcome">Home Screen</string>
     <string name="next">SIGUIENTE</string>
     <string name="skip">OMITIR</string>
     <string name="start">EMPEZAR</string>
 
-    <string name="slide_1_title">"Eduación Jalisco"</string>
-    <string name="slide_1_desc">"Gracias por descargar la aplicación de la Secretaría de Educación Jalisco, ahora estaras informado de lo que sucede en el ambito educativo."</string>
+    <string name="slide_1_title">"Educación Jalisco"</string>
+    <string name="slide_1_desc">"Gracias por descargar la aplicación de la Secretaría de Educación Jalisco, ahora estarás informado de lo que sucede en el ámbito educativo."</string>
 
     <string name="slide_2_title">Si eres alumno</string>
-    <string name="slide_2_desc">"Podrás consultar información como avisos, convocatorias para becas, tu calendario escolar y mucho mas."</string>
+    <string name="slide_2_desc">"Podrás consultar información como avisos, convocatorias para becas, tu calendario escolar y mucho más."</string>
 
     <string name="slide_3_title">"Si trabajas en la Secretaría"</string>
     <string name="slide_3_desc">"Podrás consultar información relacionada a los procesos del servicios profesional docente, noticias de tu interés y actividades relacionadas a tu labor docente o administrativa."</string>
 
     <string name="slide_4_title">Como ciudadano</string>
-    <string name="slide_4_desc">"Enterate de la actividad de la Secretaría, te invitamos a seguirnos en nuestras redes sociales (agregar iconos de las redes face y twitter)"</string>
+    <string name="slide_4_desc">"Entérate de la actividad de la Secretaría, te invitamos a seguirnos en nuestras redes sociales."</string>
 
-    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Otra vez</string>
     <string name="title_activity_cafeteria">Cafeteria</string>
     <string name="title_activity_about">About</string>
 
     <!--VERSIONS-->
     <string name="versions">Versiones</string>
-    <string name="latest_version">1.1.6</string>
+
+    <string name="latest_version">1.2.1</string>
+
+    <string name="version_1_2_0">1.2.0</string>
+    <string name="version_1_1_9">1.1.9</string>
+    <string name="version_1_1_8">1.1.8</string>
+    <string name="version_1_1_7">1.1.7</string>
+    <string name="version_1_1_6">1.1.6</string>
     <string name="version_1_1_5">1.1.5</string>
     <string name="version_1_1_4">1.1.4</string>
     <string name="version_1_1_3">1.1.3</string>
@@ -87,11 +92,20 @@
     <string name="des__1_1_4"><![CDATA[Se añadió sección de cafetería]]></string>
     <string name="des__1_1_5"><![CDATA[Se corrigieron errores.]]></string>
     <string name="des__1_1_6"><![CDATA[Cambio de tema de colores y visor PDF.]]></string>
+    <string name="des__1_1_7"><![CDATA[Corrección de errores, función de notificaciones añadida.]]></string>
+    <string name="des__1_1_8"><![CDATA[Corrección de errores, <b>función de buscador</b> añadida y mejora en visor PDF]]></string>
+    <string name="des__1_1_9"><![CDATA[Solución de errores simples]]></string>
+    <string name="des__1_2_0"><![CDATA[Solución de errores simples, ]]></string>
+    <string name="des__1_2_1"><![CDATA[Solución de errores simples, Sección de contacto añadida.]]></string>
+
     <string name="title_activity_notifications">Notificationes</string>
     <string name="beta">BETA</string>
     <string name="header_text_notifications">Recibe notificaciones sobre avisos y noticias importantes</string>
     <string name="text_empty_notifications">Vaya! no tienes notificaciones</string>
     <string name="title_activity_most_consulted">Lo mas consultado</string>
+    <string name="title_activity_search_result">SearchResult</string>
+    <string name="title_activity_contact">Contacto</string>
+    <string name="message_contact_done">Tu mensaje se ha enviado correctamente</string>
 
 
 </resources>
