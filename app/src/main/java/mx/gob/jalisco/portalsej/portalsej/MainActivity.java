@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity
     public void enableNotifications(){
         AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        long updateInterval = 600000;
+        long updateInterval = AlarmManager.INTERVAL_HALF_HOUR;
         manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + updateInterval, updateInterval, pendingIntent);
 
     }
@@ -238,8 +239,6 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -254,14 +253,15 @@ public class MainActivity extends AppCompatActivity
             intent = new Intent(MainActivity.this, Notifications.class);
         } else if (id == R.id.nav_new) {
             intent = new Intent(MainActivity.this, MostConsulted.class);
-        }else if (id == R.id.nav_share) {
-            Intent sendIntent = new Intent();
-            sendIntent.setAction(Intent.ACTION_SEND);
-            sendIntent.putExtra(Intent.EXTRA_TEXT, "Hola descarga la nueva app de Educación Jalisco https://play.google.com/store/apps/details?id=mx.gob.jalisco.portalsej.portalsej");
-            sendIntent.setType("text/plain");
-            startActivity(sendIntent);
+        } else if (id == R.id.nav_share) {
+            intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.putExtra(Intent.EXTRA_TEXT, "Hola descarga la nueva app de Educación Jalisco https://play.google.com/store/apps/details?id=mx.gob.jalisco.portalsej.portalsej");
+            intent.setType("text/plain");
         } else if (id == R.id.nav_info) {
             intent = new Intent(MainActivity.this, About.class);
+        } else if (id == R.id.contact) {
+            intent = new Intent(MainActivity.this, Contact.class);
         }
 
         if(intent  != null){

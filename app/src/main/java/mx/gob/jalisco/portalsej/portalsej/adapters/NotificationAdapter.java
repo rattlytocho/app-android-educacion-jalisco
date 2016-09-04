@@ -6,6 +6,8 @@ import mx.gob.jalisco.portalsej.portalsej.objects.Notification;
 import mx.gob.jalisco.portalsej.portalsej.services.WebServices;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder>{
 
@@ -66,11 +69,13 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         viewHolder.title.setText(items.get(i).getTitle());
         viewHolder.time_ago.setText(items.get(i).getTime_ago());
+
+        viewHolder.body.setMovementMethod(LinkMovementMethod.getInstance());
         viewHolder.body.setText(items.get(i).getBody());
 
-        Log.i("IMAGE",WebServices.ROOT_PATH+items.get(i).getImage());
+//        Log.i("IMAGE->->->",items.get(i).getImage());
 
-        if(items.get(i).getImage() != ""){
+        if(!Objects.equals(items.get(i).getImage(), "")){
             Glide.with(context)
                     .load(WebServices.ROOT_PATH+items.get(i).getImage())
                     .into(viewHolder.image);

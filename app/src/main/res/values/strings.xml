@@ -72,8 +72,10 @@
     <!--VERSIONS-->
     <string name="versions">Versiones</string>
 
-    <string name="latest_version">1.2.1</string>
+    <string name="latest_version">1.2.3</string>
 
+    <string name="version_1_2_2">1.2.2</string>
+    <string name="version_1_2_1">1.2.1</string>
     <string name="version_1_2_0">1.2.0</string>
     <string name="version_1_1_9">1.1.9</string>
     <string name="version_1_1_8">1.1.8</string>
@@ -97,6 +99,8 @@
     <string name="des__1_1_9"><![CDATA[Solución de errores simples]]></string>
     <string name="des__1_2_0"><![CDATA[Solución de errores simples, ]]></string>
     <string name="des__1_2_1"><![CDATA[Solución de errores simples, Sección de contacto añadida.]]></string>
+    <string name="des__1_2_2"><![CDATA[Solución de errores simples, Sección de chat CENDI añadida.]]></string>
+    <string name="des__1_2_3"><![CDATA[Se corrigieron errores.]]></string>
 
     <string name="title_activity_notifications">Notificationes</string>
     <string name="beta">BETA</string>
@@ -106,6 +110,22 @@
     <string name="title_activity_search_result">SearchResult</string>
     <string name="title_activity_contact">Contacto</string>
     <string name="message_contact_done">Tu mensaje se ha enviado correctamente</string>
+    <string name="chat">Chat CENDI</string>
+
+    <string-array name="categories_array">
+        <item>Padre,Madre o Tutor</item>
+        <item>Alumno</item>
+        <item>Docente, Directivo</item>
+        <item>Otro</item>
+    </string-array>
+
+    <string-array name="type_subject">
+        <item>Queja</item>
+        <item>"Petición"</item>
+        <item>Propuesta</item>
+        <item>"Solicitud de Información"</item>
+        <item>Otro</item>
+    </string-array>
 
 
 </resources>

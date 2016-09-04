@@ -18,7 +18,7 @@ public class DeviceBootReceiver extends BroadcastReceiver {
 
             AlarmManager manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-            long updateInterval = 600000;
+            long updateInterval = AlarmManager.INTERVAL_HALF_HOUR;
             manager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + updateInterval, updateInterval, pendingIntent);
 
             //Toast.makeText(context, "Alarm Set", Toast.LENGTH_SHORT).show();

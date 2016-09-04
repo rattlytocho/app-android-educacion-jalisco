@@ -18,6 +18,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <receiver android:name=".services.NotifyService">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

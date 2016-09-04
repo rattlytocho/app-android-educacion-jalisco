@@ -15,14 +15,7 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
-import android.view.View;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,15 +28,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+
 import mx.gob.jalisco.portalsej.portalsej.Notifications;
 import mx.gob.jalisco.portalsej.portalsej.R;
-import mx.gob.jalisco.portalsej.portalsej.adapters.NotificationAdapter;
-import mx.gob.jalisco.portalsej.portalsej.objects.Notification;
 import mx.gob.jalisco.portalsej.portalsej.utils.NetworkUtils;
 import mx.gob.jalisco.portalsej.portalsej.utils.Utils;
 
@@ -146,7 +136,7 @@ public class NotifyService extends BroadcastReceiver {
                     publicado = jsonObject.getString("created");
                     get_last_time = id;
 
-                    last_time = Utils.readSharedSetting(ctx, PREF_USER_LAST_NOTIFICACTION, "true");
+                    last_time = Utils.readSharedSetting(ctx, PREF_USER_LAST_NOTIFICACTION,"0");
 
                     //Utils.saveSharedSetting(ctx, NotifyService.PREF_USER_LAST_NOTIFICACTION, "");
                 }

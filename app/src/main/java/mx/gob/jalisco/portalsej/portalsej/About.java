@@ -104,7 +104,9 @@ public class About extends AppCompatActivity {
         recycler.setLayoutManager(lManager);
         recycler.setNestedScrollingEnabled(false);
         items = new ArrayList<>();
-        items.add(new Version(getString(R.string.latest_version) , Html.fromHtml(getString(R.string.des__1_2_1))));
+        items.add(new Version(getString(R.string.latest_version) , Html.fromHtml(getString(R.string.des__1_2_3))));
+        items.add(new Version(getString(R.string.version_1_2_2) , Html.fromHtml(getString(R.string.des__1_2_2))));
+        items.add(new Version(getString(R.string.version_1_2_1) , Html.fromHtml(getString(R.string.des__1_2_1))));
         items.add(new Version(getString(R.string.version_1_2_0) , Html.fromHtml(getString(R.string.des__1_2_0))));
         items.add(new Version(getString(R.string.version_1_1_9) , Html.fromHtml(getString(R.string.des__1_1_9))));
         items.add(new Version(getString(R.string.version_1_1_8) , Html.fromHtml(getString(R.string.des__1_1_8))));

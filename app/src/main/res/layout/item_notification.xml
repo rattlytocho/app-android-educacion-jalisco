@@ -44,6 +44,7 @@
             android:layout_marginRight="@dimen/fab_margin"
             android:layout_marginBottom="@dimen/margin_text_calendar"
             android:textSize="17sp"
+            android:autoLink="web"
             android:text="Cusrpo de la notificación o descripción"/>
 
         <ImageView
@@ -55,10 +56,4 @@
             android:scaleType="centerCrop"
             android:src="@drawable/header_background_1"/>
     </RelativeLayout>
-    <RelativeLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clickable="true"
-        android:background="?attr/selectableItemBackground"/>
 </android.support.v7.widget.CardView>
